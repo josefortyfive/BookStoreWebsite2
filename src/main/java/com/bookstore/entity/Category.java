@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "category", catalog = "bookstoredb")
 public class Category implements java.io.Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	private static final String IDENTITY = null;
 	private Integer categoryId;
