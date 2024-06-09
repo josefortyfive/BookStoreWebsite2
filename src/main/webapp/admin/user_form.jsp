@@ -20,7 +20,7 @@
 			</tr>
 			<tr>
 				<td align="right">Full Name:</td>
-				<td align="left"><input type="text" id="fullName" name="fullName" size="20" /> </td>
+				<td align="left"><input type="text" id="fullname" name="fullname" size="20" /> </td>
 			</tr>
 			<tr>
 				<td align="right">Password:</td>
@@ -41,7 +41,7 @@
 <script type="text/javascript">
 	function validateFormInput(){
 		var fieldEmail = document.getElementById("email");
-		var fieldFullname = document.getElementById("fullName");
+		var fieldFullname = document.getElementById("fullname");
 		var fieldPassword = document.getElementById("password");
 		
 		if(fieldEmail.value.length == 0){
