@@ -10,7 +10,7 @@
 	<jsp:directive.include file="header.jsp"/>
 	<div align="center">
 		<h3>Create New User</h3>
-	</div>
+	</div> &nbsp;
 	<div align="center">
 		<form action="create_user" method="post" onsubmit="return validateFormInput()">
 		<table>
