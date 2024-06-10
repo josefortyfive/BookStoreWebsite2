@@ -20,17 +20,29 @@ public class UserServices {
 	private EntityManager entityManager;
 	private UserDAO userDAO;
 	
-	public UserServices() {
+	private HttpServletRequest request;
+	private HttpServletResponse response;
+	
+	public UserServices(HttpServletRequest request,HttpServletResponse response ) {
+		this.request = request;
+		this.response = response;
 		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite2");
 		entityManager = entityManagerFactory.createEntityManager();
 		userDAO = new UserDAO(entityManager);
 	}
 	
-	public void listUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void listUser() throws ServletException, IOException {
+		listUser(null);
+	}
+	
+	public void listUser(String message) throws ServletException, IOException {
 		List<Users> listUsers = userDAO.listAll();
 		
 		request.setAttribute("listUsers", listUsers);
-		request.setAttribute("message", "New user created successfully!");
+		
+		if(message != null) {
+			request.setAttribute("message", message);
+		}
 		String listPage = "user_list.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
 	
@@ -39,19 +51,26 @@ public class UserServices {
 
 	}
 	
-	public void createUser(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void createUser() throws IOException, ServletException {
 		
 		String email = request.getParameter("email");
 		String fullName = request.getParameter("fullname");
 		String password = request.getParameter("password");
 		
-		response.getWriter().println("Email: " +email);
-		response.getWriter().println("Full Name: " +fullName);
-		response.getWriter().println("Password: " +password);
+		Users existUser = userDAO.findByEmail(email);
 		
-		Users newUser = new Users(email, fullName, password);
-		userDAO.create(newUser);
-		listUser(request, response);
+		if(existUser != null) {
+			String message = "Could not create user. A user with email " +email+ " already exist!";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+		} else {
+			Users newUser = new Users(email, fullName, password);
+			userDAO.create(newUser);
+			listUser("new user created successfully");
+		}
+
 		
 	}
 	
