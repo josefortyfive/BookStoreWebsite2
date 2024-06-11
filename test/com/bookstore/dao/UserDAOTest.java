@@ -71,9 +71,9 @@ public class UserDAOTest {
 		
 		assertEquals(expected, actual);
 	}
-	
-	@Test
+
 	@DisplayName("Search user using userId")
+	@Test
 	public void testGetUsersFound() {
 		Integer userId = 1;
 		Users user = userDAO.get(userId);

@@ -38,8 +38,8 @@
 					<td>${user.email}</td>
 					<td>${user.fullName}</td>
 					<td>
-						<a href="">Edit</a> &nbsp;
-						<a href="">Delete</a>
+						<a href="edit_user?id=${user.userId}">Edit</a>
+						<a href="delete_user">Delete</a>
 					</td>
 				</tr>
 			</c:forEach>
