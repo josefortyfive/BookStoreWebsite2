@@ -44,7 +44,7 @@ public class BookOrder implements java.io.Serializable {
 	private float total;
 	private String status;
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
-
+ 
 	public BookOrder() {
 	}
 

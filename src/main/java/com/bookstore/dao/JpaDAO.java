@@ -10,6 +10,7 @@ public class JpaDAO<E> {
 	protected EntityManager entityManager;
 
 	public JpaDAO(EntityManager entityManager) {
+		super();
 		this.entityManager = entityManager;
 	}
 
@@ -46,7 +47,7 @@ public class JpaDAO<E> {
 
 		Object reference = entityManager.getReference(type, id);
 		entityManager.remove(reference);
-
+ 
 		entityManager.getTransaction().commit();
 	}
 
