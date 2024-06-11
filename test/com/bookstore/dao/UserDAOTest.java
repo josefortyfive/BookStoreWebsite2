@@ -21,18 +21,16 @@ import jakarta.persistence.PersistenceException;
 import jakarta.persistence.RollbackException;
 
 
-public class UserDAOTest {
+public class UserDAOTest extends BaseDAOTest {
 	
 	private static EntityManagerFactory entityManagerFactory;
 	private static EntityManager entityManager;
 	private static UserDAO userDAO;
 	
 	@BeforeClass
-	public static void setupClass() {
+	public static void setupClass() throws Exception {
 
-		entityManagerFactory = Persistence.createEntityManagerFactory("BookStoreWebsite2");
-		entityManager = entityManagerFactory.createEntityManager();
-		
+		BaseDAOTest.setUpClass();
 		userDAO = new UserDAO(entityManager);
 	}
 	@Test
@@ -65,7 +63,7 @@ public class UserDAOTest {
 		user1.setFullName("Marlene Joe");
 		user1.setPassword("gone1");
 		
-		user1 = userDAO.update(user1);
+		user1 = userDAO.update(user1); 
 		String expected = "gone1";
 		String actual = user1.getPassword();
 		
@@ -132,8 +130,7 @@ public class UserDAOTest {
 	}
 	
 	@AfterClass
-	public static void tearDownClass() {
-		entityManager.close();
-		entityManagerFactory.close();
+	public static void tearDownClass() throws Exception {
+		BaseDAOTest.tearDownAfterClass();
 	}
 }

@@ -9,11 +9,17 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c ORDER BY c.name"),
+	@NamedQuery(name = "Category.countAll", query = "SELECT COUNT(*) FROM Category")
+})
 @Table(name = "category", catalog = "bookstoredb")
 public class Category implements java.io.Serializable {
 	
@@ -28,7 +34,7 @@ public class Category implements java.io.Serializable {
 
 	public Category(String name) {
 		this.name = name;
-	}
+	} 
 
 	public Category(String name, Set<Book> books) {
 		this.name = name;

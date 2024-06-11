@@ -21,6 +21,6 @@ public class CategoryTest {
 		entityManagerFactory.close();
 		
 		System.out.println("A Category object was persisted");
-	}
+	} 
 
 }

@@ -35,7 +35,7 @@ public class Customer implements java.io.Serializable {
 	private Date registerDate;
 	private Set<Review> reviews = new HashSet<Review>(0);
 	private Set<BookOrder> bookOrders = new HashSet<BookOrder>(0);
-
+ 
 	public Customer() {
 	}
 
