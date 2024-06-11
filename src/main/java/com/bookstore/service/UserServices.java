@@ -112,4 +112,22 @@ public class UserServices {
 		
 
 	}
+
+	public void deleteUser() throws IOException, ServletException{
+		int userId = Integer.parseInt(request.getParameter("id"));
+		
+		Users user = userDAO.get(userId);
+		String message = "User has been deleted successfully";
+		
+		if(user == null) {
+			message = "Could not find user with Id " +userId +", or it might have been deleted already";
+			
+			request.setAttribute("message", message);
+		} else {
+			userDAO.delete(userId);
+			listUser(message);
+		}
+		
+		
+	}
 }
