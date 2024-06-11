@@ -66,7 +66,6 @@ public class JpaDAO<E> {
 
 		List<E> result = query.getResultList();
 
-		entityManager.close();
 
 		return result;
 	}
@@ -79,7 +78,6 @@ public class JpaDAO<E> {
 
 		List<Object[]> result = query.getResultList();
 
-		entityManager.close();
 
 		return result;
 	}
@@ -92,7 +90,6 @@ public class JpaDAO<E> {
 	
 		List<E> result = query.getResultList();
 
-		entityManager.close();
 
 		return result;
 	}
