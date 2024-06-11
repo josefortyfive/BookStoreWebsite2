@@ -23,16 +23,22 @@ public class Users implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer userId;
 	private String email;
-	private String password;
 	private String fullName;
+	private String password;
+
 
 	public Users() {
 	}
 
-	public Users(String email, String password, String fullName) {
+	public Users(Integer userId, String email,  String fullName, String password) {
+		this(email, fullName, password);
+		this.userId = userId;
+	}
+	public Users(String email, String fullName, String password) {
+		super();
 		this.email = email;
-		this.password = password;
 		this.fullName = fullName;
+		this.password = password;
 	}
 
 	@Column(name = "user_id")
