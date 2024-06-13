@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
+import com.bookstore.entity.Users;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -47,5 +48,24 @@ public class CategoryServices {
 		requestDispatcher.forward(request, response);
 
 
+	}
+	
+	public void createCategory() throws IOException, ServletException {
+		
+		String categoryName = request.getParameter("name");
+		
+		Category existCategory = categoryDAO.findByName(categoryName);
+		
+		if(existCategory != null) {
+			String message = "Could not create category " +categoryName+ ", category name already exist";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+		} else {
+			Category newCategory = new Category(categoryName);
+			categoryDAO.create(newCategory);
+			listCategory("Category created Successfully");
+		}
 	}
 }
