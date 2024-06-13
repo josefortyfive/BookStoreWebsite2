@@ -108,6 +108,30 @@ class CategoryDAOTest extends BaseDAOTest {
 		System.out.println("Number of listed category "+totalCategory);
 		assertEquals(7, totalCategory);
 	}
+	
+	@DisplayName("Find name of the category")
+	@Test
+	public void testFindByName() {
+		String name = "Core Java";
+		
+		Category category = categoryDAO.findByName(name);
+		
+		System.out.println(category.getName());
+		
+		assertNotNull(category);
+		
+	}
+	@DisplayName("Find name of the category")
+	@Test
+	public void testFindByNameNull() {
+		String name = "Job";
+		
+		Category category = categoryDAO.findByName(name);
+		
+		
+		assertNull(category);
+		
+	}
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		BaseDAOTest.tearDownAfterClass();
