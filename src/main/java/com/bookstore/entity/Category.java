@@ -25,7 +25,6 @@ import jakarta.persistence.Table;
 public class Category implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private static final String IDENTITY = null;
 	private Integer categoryId;
 	private String name;
 	private Set<Book> books = new HashSet<Book>(0);

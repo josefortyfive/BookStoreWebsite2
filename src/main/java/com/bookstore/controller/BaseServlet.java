@@ -1,15 +1,14 @@
-package com.bookstore.controller.admin;
+package com.bookstore.controller;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-@WebServlet("/")
-public class BaseServlet extends HttpServlet {
+
+public abstract class BaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected EntityManagerFactory entityManagerFactory;
 	protected EntityManager entityManager;

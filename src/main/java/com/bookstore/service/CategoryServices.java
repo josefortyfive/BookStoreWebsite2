@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
-import com.bookstore.entity.Users;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 
 public class CategoryServices {
 	private EntityManager entityManager;
