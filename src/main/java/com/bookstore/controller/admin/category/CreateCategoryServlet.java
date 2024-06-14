@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.service.CategoryServices;
-import com.bookstore.controller.admin.BaseServlet;
+import com.bookstore.controller.BaseServlet;
 
 @WebServlet("/admin/create_category")
 public class CreateCategoryServlet extends BaseServlet {
