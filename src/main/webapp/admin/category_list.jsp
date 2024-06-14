@@ -42,7 +42,15 @@
 			</c:forEach>
 		</table>
 	</div>
-	
-		<jsp:directive.include file="footer.jsp"/>
+	<jsp:directive.include file="footer.jsp"/>
+
+<script>
+	function confirmDelete(categoryId){
+		if (confirm('Are you sure you want to delete the user with ID ' +categoryId + '? ')){
+			window.location = 'delete_category?id=' +categoryId;
+		}
+	}
+
+</script>
 </body>
 </html>
