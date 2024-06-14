@@ -13,10 +13,10 @@
 	<div align="center">
 		<h2>
 			<c:if test="${category !=null}">
-				<h3>Create New User</h3>
+				<h3>Edit Category</h3>
 			</c:if>
 			<c:if test="${category == null}">
-				<h3>Create New User</h3>
+				<h3>Create New Category</h3>
 			</c:if>
 		</h2>
 	</div>

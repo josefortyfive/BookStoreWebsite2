@@ -68,4 +68,40 @@ public class CategoryServices {
 			listCategory("Category created Successfully");
 		}
 	}
+	
+	public void editCategory() throws IOException, ServletException{
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		Category category = categoryDAO.get(categoryId);
+		
+		request.setAttribute("category", category);
+		
+		String editPage = "category_form.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+	}
+	
+	public void updateCategory() throws IOException, ServletException {
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+		String categoryName = request.getParameter("name");
+		
+		Category categoryById = categoryDAO.get(categoryId);
+		Category categoryByName = categoryDAO.findByName(categoryName);
+		
+		if(categoryByName != null && categoryById.getCategoryId() != categoryByName.getCategoryId()) {
+			String message = "Could not update the category " +categoryName+ " already exist";
+			request.setAttribute("message", message);
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+		} else {
+			
+			categoryById.setName(categoryName);
+			categoryDAO.update(categoryById);
+			String message = "Category sucessfully been updated";
+			listCategory(message);
+			
+		}
+		
+		
+	}
 }
