@@ -4,20 +4,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Manage Categories - Evergreen Bookstore Administration</title>
+	<meta charset="ISO-8859-1">
+	<title>Manage Categories - Evergreen Bookstore Administration</title>
+	<link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
 	<jsp:directive.include file="header.jsp"/>
 	<div align="center">
-		<h3>Category Management</h3>
+		<h1 class="pageheading">Category Management</h1>
 		<h3><a href="category_form.jsp">Create New Category</a></h3>
 	</div>
 	
 	<c:if test="${message != null}">
 		<div align = "center">
-			<h4><i>${message }</i></h4>
+			<h4 class="message">${message }</h4>
 		</div>
 	</c:if>
 	
