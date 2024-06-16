@@ -1,4 +1,5 @@
 
+<link rel="stylesheet" href="../css/style.css">
 <div align="center">
 	<div>
 		<img src="../images/BookstoreAdminLogo.png" />
@@ -9,14 +10,46 @@
 		<br/><br/>
 	</div>
 	
-	<div align="center">
-		<b>
-		<a href="list_users" >Users</a> |
-		<a href="list_category" >Categories</a> |
-		<a href="list_books" >Books</a> |
-		<a href="list_customers">Customers</a> |
-		<a href="list_reviews">Reviews</a> |
-		<a href="list_orders">Orders</a>
-		</b>
+	<div id="headermenu">
+		<div>
+			<a href="list_users" >
+				<img src="../images/users.png"/><br/>Users
+			</a> 
+		</div>	
+		<div>
+			<a href="list_category" >
+				<img src="../images/category.png"/><br/>Categories
+			</a> 
+		</div>	
+			
+		<div>
+			<a href="list_books" >
+				<img src="../images/bookstack.png"/><br/>Books
+			</a> 
+		</div>	
+		<div>
+			<a href="list_customers">
+				<img src="../images/customer.png"/><br/>Customers
+			</a> 
+		</div>	
+		<div>
+			<a href="list_reviews">
+				<img src="../images/review.png"/><br/>Reviews
+			</a> 
+				
+		</div>	
+		<div>
+			<a href="list_orders">
+				<img src="../images/order.png"/><br/>Orders
+			</a>
+		</div>	
+		
+		
+		
+		
+		
+		
+		
+		
 	</div>
 </div>
