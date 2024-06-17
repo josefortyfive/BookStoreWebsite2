@@ -7,6 +7,8 @@
 	<meta charset="ISO-8859-1">
 	<title>Manage Users - Evergreen Bookstore Administration</title>
 	<link rel="stylesheet" href="../css/style.css">
+	<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="jquery.validate.min.js"></script>
 </head>
 <body>
 
@@ -41,7 +43,7 @@
 					<td>${user.fullName}</td>
 					<td>
 						<a href="edit_user?id=${user.userId}">Edit</a>
-						<a href="javascript:confirmDelete(${user.userId})">Delete</a>
+						<a href="javascript:void(0);" class="deleteLink" id="${user.userId}">Delete</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -50,11 +52,17 @@
 	
 		<jsp:directive.include file="footer.jsp"/>
 <script>
-	function confirmDelete(userId){
-		if (confirm('Are you sure you want to delete the user with ID ' +userId + '? ')){
-			window.location = 'delete_user?id=' +userId;
-		}
-	}
+	
+	$(document).ready(function(){
+		$(".deleteLink").each(function(){
+			$(this).on("click", function(){
+				userId= $(this).attr("id");
+				if (confirm('Are you sure you want to delete the user with ID ' +userId + '? ')){
+					window.location = 'delete_user?id=' +userId;
+				}
+			});
+		});
+	});
 
 </script>
 </body>
