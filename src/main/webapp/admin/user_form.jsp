@@ -4,9 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="ISO-8859-1">
+	<meta http-equiv ="Content-type" content="text/html; "charset="ISO-8859-1">
 	<title>Create New User</title>
-	<link rel="stylesheet" href="../css/style.css">
+	<link rel="stylesheet" href="../css/style.css">	
+	<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="jquery.validate.min.js"></script>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
@@ -25,11 +27,11 @@
 	
 	<div align="center">
 		<c:if test="${user !=null}">
-			<form action="update_user" method="post" onsubmit="return validateFormInput()">
+			<form action="update_user" method="post" id="userForm">
 			<input type="hidden" name="userId" value="${user.userId}">
 		</c:if>
 		<c:if test="${user == null}">
-			<form action="create_user" method="post" onsubmit="return validateFormInput()">
+			<form action="create_user" method="post" id="userForm">
 		</c:if>
 		<table class="form">
 			<tr>
@@ -48,7 +50,8 @@
 			<tr>
 				<td colspan ="2" align="center">
 					<button type="submit">Save</button> &nbsp;&nbsp;&nbsp;
-					<button onclick="javascript:history.go(-1);">Cancel</button>
+					<button id="buttonCancel">Cancel</button>
+					
 
 				</td>
 			</tr>
@@ -58,31 +61,32 @@
 	<jsp:directive.include file="footer.jsp"/>
 </body>
 <script type="text/javascript">
-	function validateFormInput(){
-		var fieldEmail = document.getElementById("email");
-		var fieldFullname = document.getElementById("fullname");
-		var fieldPassword = document.getElementById("password");
+
+
+	$(document).ready(function(){
+		$("#userForm").validate({
+			rules:{
+				email: {
+					required: true,
+					email: true
+				},
+				fullname: "required",
+				password: "required"
+			},
+			messages : {
+				email: {
+					required: "Please enter email",
+					email: "Please enter an valid email address"
+				},
+				fullname: "Full Name is required!",
+				password: "Password is required!"
+			}
+		});
 		
-		if(fieldEmail.value.length == 0){
-			alert("Email is required!");
-			fieldEmail.focus();
-			return false;
-		}
-		
-		if(fieldFullname.value.length == 0){
-			alert("Full Name is required!");
-			fieldFullname.focus();
-			return false;
-		}
-		
-		if(fieldPassword.value.length == 0){
-			alert("Password is required!");
-			fieldPassword.focus();
-			return false;
-		}
-		
-		return true
-	}
+		$("#buttonCancel").click(function(){
+			history.go(-1);
+		});
+	});
 
 </script>
 
