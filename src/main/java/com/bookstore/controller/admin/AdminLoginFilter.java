@@ -37,8 +37,6 @@ public class AdminLoginFilter implements Filter {
 		} else if(loggedIn || loginRequest) {
 			chain.doFilter(request, response);
 		} else {
-
-			System.out.println("Else login");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 			dispatcher.forward(request, response);
 		}

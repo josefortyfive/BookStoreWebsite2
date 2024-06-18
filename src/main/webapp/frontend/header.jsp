@@ -9,7 +9,7 @@
 		<input type="button" value="Search" />
 		
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="Login">Sign In</a>  |
+		<a href="admin/login.jsp">Sign In</a>  |
 		<a href="register">Register</a> |
 		<a href="view_cart">Cart</a>
 	</div>
