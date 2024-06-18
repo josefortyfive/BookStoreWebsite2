@@ -3,6 +3,7 @@ package com.bookstore.dao;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
+import java.util.List;
 import java.text.SimpleDateFormat;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -17,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
 
-class BookDAOTest extends BaseDAOTest {
+public class BookDAOTest extends BaseDAOTest {
 
 	private static BookDAO bookDAO;
 	
@@ -39,7 +40,7 @@ class BookDAOTest extends BaseDAOTest {
 		category.setCategoryId(1);
 		newBook.setCategory(category);
 		
-		newBook.setTitle("Introduction to Algorithms, fourth edition 4");
+		newBook.setTitle("Introduction to Algorithms, sixth edition");
 		newBook.setAuthor("Thomas H. Cormen");
 		newBook.setDescription("ome books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and comprehensiveness. ");
 		newBook.setPrice(107.95f);
@@ -88,4 +89,36 @@ class BookDAOTest extends BaseDAOTest {
 		
 	}
 
+	@Test
+	public void testDeleteBookSuccess() {
+		Integer bookId = 10;
+		bookDAO.delete(bookId);
+		
+		assertTrue(true);
+	}
+	@Test
+	public void testGetFound() {
+		Integer bookId = 1;
+		Book book = bookDAO.get(bookId);
+		
+		assertNotNull(book);
+	}
+	
+	@Test
+	public void testListBookAll() {
+		List<Book> listBook = bookDAO.listAll();
+		
+		for(Book book : listBook) {
+			System.out.println(book.getTitle());
+			
+		}
+		
+		assertTrue(listBook.size() > 0);
+	}
+	
+	@Test
+	public void testCountAll() {
+		long totalBook = bookDAO.count();
+		assertEquals(7, totalBook);
+	}
 }
