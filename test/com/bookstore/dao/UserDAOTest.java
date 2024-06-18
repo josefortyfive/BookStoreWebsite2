@@ -1,6 +1,7 @@
 package com.bookstore.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -13,18 +14,12 @@ import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 
 import com.bookstore.entity.Users;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 import jakarta.persistence.RollbackException;
 
 
 public class UserDAOTest extends BaseDAOTest {
 	
-	private static EntityManagerFactory entityManagerFactory;
-	private static EntityManager entityManager;
 	private static UserDAO userDAO;
 	
 	@BeforeClass
@@ -128,6 +123,25 @@ public class UserDAOTest extends BaseDAOTest {
 		System.out.println(user.getEmail());
 		assertNotNull(user);
 	}
+	
+	@Test
+	public void testCheckLoginSuccess() {
+		String email = "carol@hotmail.com";
+		String password = "password1234";
+		boolean checkLogin = userDAO.checkLogin(email, password);
+		
+		assertTrue(checkLogin);
+	}
+	
+	@Test
+	public void testCheckLoginFailed() {
+		String email = "car2ol@hotmail.com";
+		String password = "pass2word1234";
+		boolean checkLogin = userDAO.checkLogin(email, password);
+		
+		assertFalse(checkLogin);
+	}
+	
 	
 	@AfterClass
 	public static void tearDownClass() throws Exception {

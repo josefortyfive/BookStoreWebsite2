@@ -9,13 +9,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.lang.NullPointerException;
 import java.util.List;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceException;
 
 
 class CategoryDAOTest extends BaseDAOTest {
