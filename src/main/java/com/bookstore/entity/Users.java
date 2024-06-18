@@ -30,15 +30,16 @@ public class Users implements java.io.Serializable {
 	public Users() {
 	}
 
-	public Users(Integer userId, String email,  String fullName, String password) {
-		this(email, fullName, password);
-		this.userId = userId;
-	}
 	public Users(String email, String fullName, String password) {
 		super();
 		this.email = email;
 		this.fullName = fullName;
 		this.password = password;
+	}
+
+	public Users(Integer userId, String email,  String fullName, String password) {
+		this(email, fullName, password);
+		this.userId = userId;
 	}
 
 	@Column(name = "user_id")
