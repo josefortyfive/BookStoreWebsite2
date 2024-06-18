@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,13 @@
 	<div align = "center">
 		<h1>Book Store Administrator</h1>
 		<h2>Admin Login</h2>
+		<div>
+			<c:if test="${message != null}">
+				<div align = "center">
+					<h4 class="message">${message}</h4>
+				</div>
+			</c:if>
+		</div>
 		<form id="loginForm" action="login" method="post">
 			<table>
 				<tr>
