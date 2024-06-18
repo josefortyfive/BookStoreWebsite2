@@ -5,7 +5,7 @@
 	</div>
 	
 	<div>
-		Welcome, Admin | <a href="logout">Logout</a>
+		Welcome, Admin <c:out value="${sessionScope.useremail}"/>| <a href="logout">Logout</a>
 		<br/><br/>
 	</div>
 	
