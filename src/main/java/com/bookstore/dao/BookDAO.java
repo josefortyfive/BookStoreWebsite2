@@ -21,7 +21,7 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 
 	@Override
 	public Book update(Book book) {
-		book.setLastUpdateTime(new Date());
+		book.setLastUpdateTime(new Date(0));
 		return super.update(book);
 	}
 
@@ -33,7 +33,6 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 	@Override
 	public void delete(Object id) {
 		super.delete(Book.class, id);
-		
 	}
 
 	@Override
@@ -51,7 +50,6 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 	}
 	@Override
 	public long count() {
-		// TODO Auto-generated method stub
 		return super.countWithNamedQuery("Book.countAll");
 	}
 
