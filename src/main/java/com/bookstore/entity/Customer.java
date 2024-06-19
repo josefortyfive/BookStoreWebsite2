@@ -1,3 +1,4 @@
+
 package com.bookstore.entity;
 // Generated 22 May 2024, 6:03:07 pm by Hibernate Tools 5.4.33.Final
 
@@ -70,7 +71,7 @@ public class Customer implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy =  GenerationType.IDENTITY)
 
-	@Column(name = "book_id", unique = true, nullable = false)
+	@Column(name = "customer_id", unique = true, nullable = false)
 	public Integer getCustomerId() {
 		return this.customerId;
 	}

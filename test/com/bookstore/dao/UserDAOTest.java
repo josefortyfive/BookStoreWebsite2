@@ -31,9 +31,9 @@ public class UserDAOTest extends BaseDAOTest {
 	@Test
 	public void testCreateUsers() {
 		Users user1 = new Users();
-		user1.setEmail("david.beckham@gmail.com");
-		user1.setFullName("Tommy Johnson");
-		user1.setPassword("1234pass");
+		user1.setEmail("craig.david1@gmail.com");
+		user1.setFullName("Craig David");
+		user1.setPassword("david19");
 
 		user1 = userDAO.create(user1);
 	
@@ -55,11 +55,11 @@ public class UserDAOTest extends BaseDAOTest {
 		Users user1 = new Users();
 		user1.setUserId(11);
 		user1.setEmail("marlyn@outlook.com");
-		user1.setFullName("Marlene Joe");
-		user1.setPassword("gone1");
+		user1.setFullName("Marlene Johson");
+		user1.setPassword("guntea");
 		
 		user1 = userDAO.update(user1); 
-		String expected = "gone1";
+		String expected = "guntea";
 		String actual = user1.getPassword();
 		
 		assertEquals(expected, actual);
@@ -85,7 +85,7 @@ public class UserDAOTest extends BaseDAOTest {
 	
 	@Test
 	public void testDeleteUser() {
-		Integer userId = 6;
+		Integer userId = 33;
 		userDAO.delete(userId);
 		
 		Users user = userDAO.get(userId);
