@@ -1,11 +1,10 @@
 package com.bookstore.entity;
-// Generated 22 May 2024, 6:03:07 pm by Hibernate Tools 5.4.33.Final
 
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,10 +13,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+<<<<<<< HEAD
+=======
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
+>>>>>>> 7065fd9b6ef236671281d37f097ac57b87d7cadb
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
+<<<<<<< HEAD
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -30,10 +36,17 @@ import jakarta.persistence.OneToMany;
 	@NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
 	@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b")
 })
-public class Book implements java.io.Serializable {
+=======
+import jakarta.persistence.UniqueConstraint;
 
-	private static final long serialVersionUID = 1L;
-	private Integer bookId;
+@Entity
+@Table(name = "book", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
+@NamedQueries({ @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
+		@NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
+		@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b") })
+>>>>>>> 7065fd9b6ef236671281d37f097ac57b87d7cadb
+public class Book implements java.io.Serializable {
+	private int bookId;
 	private Category category;
 	private String title;
 	private String author;
@@ -50,8 +63,14 @@ public class Book implements java.io.Serializable {
 	public Book() {
 	}
 
-	public Book(Category category, String title, String author, String description, String isbn, byte[] image,
-			float price, Date publishDate, Date lastUpdateTime) {
+	public Book(Integer bookId) {
+		super();
+		this.bookId = bookId;
+	}
+
+	public Book(Category category, String title, String author, String description, String isbn,
+			byte[] image, float price, Date publishDate, Date lastUpdateTime, Set<Review> reviews,
+			Set<OrderDetail> orderDetails) {
 		this.category = category;
 		this.title = title;
 		this.author = author;
@@ -61,10 +80,14 @@ public class Book implements java.io.Serializable {
 		this.price = price;
 		this.publishDate = publishDate;
 		this.lastUpdateTime = lastUpdateTime;
+		this.reviews = reviews;
+		this.orderDetails = orderDetails;
 	}
 
-	public Book(Category category, String title, String author, String description, String isbn, byte[] image,
-			float price, Date publishDate, Date lastUpdateTime, Set<Review> reviews, Set<OrderDetail> orderDetails) {
+	public Book(int bookId, Category category, String title, String author, String description, String isbn,
+			byte[] image, float price, Date publishDate, Date lastUpdateTime, Set<Review> reviews,
+			Set<OrderDetail> orderDetails) {
+		this.bookId = bookId;
 		this.category = category;
 		this.title = title;
 		this.author = author;
@@ -80,13 +103,12 @@ public class Book implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
 	@Column(name = "book_id", unique = true, nullable = false)
-	public Integer getBookId() {
+	public int getBookId() {
 		return this.bookId;
 	}
 
-	public void setBookId(Integer bookId) {
+	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
 
@@ -100,6 +122,7 @@ public class Book implements java.io.Serializable {
 		this.category = category;
 	}
 
+	@Column(name = "title", unique = true, nullable = false, length = 128)
 	public String getTitle() {
 		return this.title;
 	}
@@ -108,6 +131,7 @@ public class Book implements java.io.Serializable {
 		this.title = title;
 	}
 
+	@Column(name = "author", nullable = false, length = 64)
 	public String getAuthor() {
 		return this.author;
 	}
@@ -116,6 +140,7 @@ public class Book implements java.io.Serializable {
 		this.author = author;
 	}
 
+	@Column(name = "description", nullable = false, length = 16777215)
 	public String getDescription() {
 		return this.description;
 	}
@@ -124,6 +149,7 @@ public class Book implements java.io.Serializable {
 		this.description = description;
 	}
 
+	@Column(name = "isbn", nullable = false, length = 15)
 	public String getIsbn() {
 		return this.isbn;
 	}
@@ -132,6 +158,7 @@ public class Book implements java.io.Serializable {
 		this.isbn = isbn;
 	}
 
+	@Column(name = "image", nullable = false)
 	public byte[] getImage() {
 		return this.image;
 	}
@@ -140,6 +167,7 @@ public class Book implements java.io.Serializable {
 		this.image = image;
 	}
 
+	@Column(name = "price", nullable = false, precision = 12, scale = 0)
 	public float getPrice() {
 		return this.price;
 	}
@@ -164,8 +192,8 @@ public class Book implements java.io.Serializable {
 		return this.lastUpdateTime;
 	}
 
-	public void setLastUpdateTime(Date lastUpdateTime) {
-		this.lastUpdateTime = lastUpdateTime;
+	public void setLastUpdateTime(Date date) {
+		this.lastUpdateTime = date;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
@@ -198,4 +226,31 @@ public class Book implements java.io.Serializable {
 		this.base64Image = base64Image;
 	}
 
+	@Transient
+	public String getBase64Image() {
+		this.base64Image = Base64.getEncoder().encodeToString(this.image);
+		return this.base64Image;
+	}
+
+	@Transient
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(bookId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return bookId == other.bookId;
+	}
 }
