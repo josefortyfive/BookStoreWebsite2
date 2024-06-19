@@ -13,38 +13,22 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-<<<<<<< HEAD
-=======
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
->>>>>>> 7065fd9b6ef236671281d37f097ac57b87d7cadb
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.persistence.Transient;
-<<<<<<< HEAD
-import jakarta.persistence.NamedQueries;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
 
-
-@Entity
-@Table(name="book")
-@NamedQueries({
-	@NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
-	@NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
-	@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b")
-})
-=======
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "book", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
 @NamedQueries({ @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
 		@NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
-		@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b") })
->>>>>>> 7065fd9b6ef236671281d37f097ac57b87d7cadb
+		@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b") 
+})
 public class Book implements java.io.Serializable {
 	private int bookId;
 	private Category category;
@@ -226,16 +210,6 @@ public class Book implements java.io.Serializable {
 		this.base64Image = base64Image;
 	}
 
-	@Transient
-	public String getBase64Image() {
-		this.base64Image = Base64.getEncoder().encodeToString(this.image);
-		return this.base64Image;
-	}
-
-	@Transient
-	public void setBase64Image(String base64Image) {
-		this.base64Image = base64Image;
-	}
 
 	@Override
 	public int hashCode() {
