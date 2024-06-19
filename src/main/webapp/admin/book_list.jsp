@@ -8,8 +8,8 @@
 	<meta charset="ISO-8859-1">
 	<title>Manage Book - Evergreen Bookstore Administration</title>
 	<link rel="stylesheet" href="../css/style.css">
-	<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
-	<script type="text/javascript" src="jquery.validate.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 	
 	<div align="center">
 		<h1 class="pageheading">Book Management</h1>
-		<h3><a href="user_form.jsp">Create Book User</a></h3>
+		<h3><a href="new_book">Create Book User</a></h3>
 	</div>
 	
 	<c:if test="${message != null}">

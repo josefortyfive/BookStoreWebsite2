@@ -7,8 +7,8 @@
 	<meta charset="ISO-8859-1">
 	<title>Manage Categories - Evergreen Bookstore Administration</title>
 	<link rel="stylesheet" href="../css/style.css">
-	<script type="text/javascript" src="jquery-3.7.1.min.js"></script>
-	<script type="text/javascript" src="jquery.validate.min.js"></script>
+	<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 
