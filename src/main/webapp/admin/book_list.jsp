@@ -50,8 +50,8 @@
 					<td>${book.title}</td>
 					<td>${book.author }</td>
 					<td>${book.category.name}</td>
-					<td>${book.price}</td>
-					<td>${book.lastUpdateTime}</td>
+					<td>$ ${book.price}</td>
+					<td><fmt:formatDate pattern='MM/dd/yyyy' value='${book.lastUpdateTime}'/></td>
 					<td>
 						<a href="edit_book?id=${book.bookId}">Edit</a>
 						<a href="javascript:void(0);" class="deleteLink" id="${book.bookId}">Delete</a>
