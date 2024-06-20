@@ -30,6 +30,8 @@ import jakarta.persistence.UniqueConstraint;
 		@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b") 
 })
 public class Book implements java.io.Serializable {
+
+	private static final long serialVersionUID = 1L;
 	private int bookId;
 	private Category category;
 	private String title;
