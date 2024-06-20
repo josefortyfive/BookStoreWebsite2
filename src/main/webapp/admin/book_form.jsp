@@ -42,7 +42,12 @@
 					<td>
 					<select name="category" >
 						<c:forEach items="${listCategory}" var ="category">
-							<option value="${category.categoryId}">
+							<c:if test="${category.categoryId eq book.category.categoryId}">
+								<option value="${category.categoryId}" selected>
+							</c:if>
+							<c:if test="${category.categoryId ne book.category.categoryId}">
+								<option value="${category.categoryId}">
+							</c:if>
 								${category.name}
 							</option>
 						</c:forEach>
@@ -69,7 +74,8 @@
 				<td align="right">Book Image:</td>
 				<td align="left">
 					<input type="file" id="bookImage" name="bookImage" size="20" value="${book.base64Image}"/> <br/>
-					<img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px">
+					<img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px"
+						src="data:image/jpg;base64, ${book.base64Image}" />
 				</td>
 			</tr>
 			<tr>
@@ -79,7 +85,7 @@
 			<tr>
 				<td align="right">Description:</td>
 				<td align="left">
-					<textArea rows="5" cols="50" id="description" name="description" ></textArea>
+					<textArea rows="5" cols="50" id="description" name="description" >${book.description}</textArea>
 				</td>
 			</tr>
 			<tr><td>&nbsp;</td></tr>
@@ -87,8 +93,6 @@
 				<td colspan ="2" align="center">
 					<button type="submit">Save</button> &nbsp;&nbsp;&nbsp;
 					<button id="buttonCancel">Cancel</button>
-					
-
 				</td>
 			</tr>
 		</table>	
@@ -134,7 +138,7 @@
 		});
 		
 		$("#buttonCancel").click(function(){
-			history.go(-1);
+			history.back();
 		});
 	});
 
