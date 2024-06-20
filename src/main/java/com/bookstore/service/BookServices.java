@@ -67,8 +67,9 @@ public class BookServices {
 	}
 
 	public void createBook()throws ServletException, IOException  {
-		Integer categoryId = Integer.parseInt(request.getParameter("category"));
+		
 		String title = request.getParameter("title");
+		
 		
 		Book existBook = bookDAO.findByTitle(title);
 		if(existBook != null) {
@@ -76,6 +77,21 @@ public class BookServices {
 			listBook(message);
 			return;
 		}
+
+		Book newBook = new Book();
+		readBookFields(newBook);
+		
+		Book createBook = bookDAO.create(newBook);
+		
+		if(createBook.getBookId() > 0) {
+			 String message = "A new Book has been successfully created!";
+			 listBook(message);
+		}
+	}
+	
+	public void readBookFields(Book book) throws ServletException, IOException {
+		
+		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String description = request.getParameter("description");
 		String isbn = request.getParameter("isbn");
@@ -89,25 +105,18 @@ public class BookServices {
 			throw new ServletException("Error parsing publish date (format is MM/dd/yyyy");
 		}
 		
-		System.out.println("Category ID: " +categoryId);
-		System.out.println("Title: " +title);
-		System.out.println("Author: " +author);
-		System.out.println("description: " +description);
-		System.out.println("Price ID: " +isbn);
-		System.out.println("Price ID: " +price);
-		System.out.println("publishDate: " +publishDate);
+		book.setTitle(title);
+		book.setAuthor(author);
+		book.setDescription(description);
+		book.setIsbn(isbn);
+		book.setPublishDate(publishDate);
 		
-		Book newBook = new Book();
-		newBook.setTitle(title);
-		newBook.setAuthor(author);
-		newBook.setDescription(description);
-		newBook.setIsbn(isbn);
-		newBook.setPublishDate(publishDate);
-		
+
+		Integer categoryId = Integer.parseInt(request.getParameter("category"));
 		Category category = categoryDAO.get(categoryId);
-		newBook.setCategory(category);
+		book.setCategory(category);
 		
-		newBook.setPrice(price);
+		book.setPrice(price);
 		
 		Part part = request.getPart("bookImage");
 		
@@ -119,15 +128,9 @@ public class BookServices {
 			inputStream.read(imageBytes);
 			inputStream.close();
 			
-			newBook.setImage(imageBytes);
+			book.setImage(imageBytes);
 		}
 		
-		Book createBook = bookDAO.create(newBook);
-		if(createBook.getBookId() > 0) {
-			 String message = "A new Book has been successfully created!";
-			 request.setAttribute("message", message);
-			 listBook(message);
-		}
 	}
 
 	public void editBook() throws ServletException, IOException {
@@ -142,5 +145,26 @@ public class BookServices {
 		String editPage = "book_form.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
 		requestDispatcher.forward(request, response);
+	}
+
+	public void update() throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
+		String title = request.getParameter("title");
+		
+		Book existBook = bookDAO.get(bookId);
+		Book bookByTitle = bookDAO.findByTitle(title);
+		
+		if(!existBook.equals(bookByTitle)) {
+			String message = "Could not update the book. Book Already exist";
+			listBook(message);
+			return;
+		}
+		
+		
+		readBookFields(existBook);
+		bookDAO.update(existBook);
+		
+		String message = "Book has been updated successfully!";
+		listBook(message);
 	}
 }
