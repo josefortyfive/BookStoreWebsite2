@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +30,11 @@
 	
 	
 	<div align="center">
-		<c:if test="${user !=null}">
+		<c:if test="${book !=null}">
 			<form action="update_book" method="post" id="bookForm" enctype="multipart/form-data">
-			<input type="hidden" name="userId" value="${user.userId}">
+			<input type="hidden" name="bookId" value="${book.bookId}">
 		</c:if>
-		<c:if test="${user == null}">
+		<c:if test="${book == null}">
 			<form action="create_book" method="post" id="bookForm" enctype="multipart/form-data">
 		</c:if>
 		<table class="form">
@@ -68,12 +69,13 @@
 			</tr>
 			<tr>
 				<td align="right">Publish Date:</td>
-				<td align="left"><input type="text" id="publishDate" name="publishDate" size="20" value="${book.publishDate}"/> </td>
+				<td align="left"><input type="text" id="publishDate" name="publishDate" size="20" 
+					value="<fmt:formatDate pattern='MM/dd/yyyy' value='${book.publishDate}'/>" /> </td>
 			</tr>
 			<tr>
 				<td align="right">Book Image:</td>
 				<td align="left">
-					<input type="file" id="bookImage" name="bookImage" size="20" value="${book.base64Image}"/> <br/>
+					<input type="file" id="bookImage" name="bookImage" size="20"/> <br/>
 					<img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px"
 						src="data:image/jpg;base64, ${book.base64Image}" />
 				</td>
