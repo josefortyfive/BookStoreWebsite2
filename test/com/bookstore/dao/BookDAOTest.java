@@ -1,5 +1,6 @@
 package com.bookstore.dao;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Date;
@@ -119,6 +120,17 @@ public class BookDAOTest extends BaseDAOTest {
 		assertTrue(listBook.size() > 0);
 	}
 
+	@Test
+	public void testListNewBooks() {
+		List<Book> listNewBooks = bookDAO.listNewBook();
+		
+		for(Book book : listNewBooks) {
+			
+			System.out.println(book.getTitle() + " "+ book.getPublishDate());
+		}
+		
+		assertEquals(4, listNewBooks.size());
+	}
 	@Test
 	public void testListByCategory() {
 		int categoryId = 1;
