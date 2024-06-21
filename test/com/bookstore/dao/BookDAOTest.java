@@ -119,7 +119,42 @@ public class BookDAOTest extends BaseDAOTest {
 
 		assertTrue(listBook.size() > 0);
 	}
-
+	
+	@Test
+	public void testFindByTitleExist() {
+		String title = "Java";
+		List<Book> result = bookDAO.search(title);
+		
+		for(Book book : result) {
+			System.out.println(book.getTitle() + " - " +book.getAuthor());
+		}
+		assertEquals(7, result.size());
+	}
+	
+	@Test
+	public void testFindByAuthor() {
+		String author = "Joshua";
+		List<Book> result = bookDAO.search(author);
+		
+		for(Book book : result) {
+			System.out.println(book.getAuthor());
+		}
+		assertEquals(1, result.size());
+	
+	}
+	
+	@Test
+	public void testFindByDescription() {
+		String description = "Java EE";
+		List<Book> result = bookDAO.search(description);
+		
+		for(Book book : result) {
+			System.out.println(book.getDescription());
+		}
+		assertEquals(1, result.size());
+	
+	}
+	
 	@Test
 	public void testListNewBooks() {
 		List<Book> listNewBooks = bookDAO.listNewBook();
@@ -131,6 +166,9 @@ public class BookDAOTest extends BaseDAOTest {
 		
 		assertEquals(4, listNewBooks.size());
 	}
+	
+	
+	
 	@Test
 	public void testListByCategory() {
 		int categoryId = 1;
