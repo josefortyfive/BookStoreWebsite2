@@ -154,7 +154,7 @@ public class BookServices {
 		Book existBook = bookDAO.get(bookId);
 		Book bookByTitle = bookDAO.findByTitle(title);
 		
-		if(!existBook.equals(bookByTitle)) {
+		if(bookByTitle != null && !existBook.equals(bookByTitle)) {
 			String message = "Could not update the book. Book Already exist";
 			listBook(message);
 			return;
@@ -211,4 +211,25 @@ public class BookServices {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destPage);
 		requestDispatcher.forward(request, response);
 	}
+
+	public void search() throws ServletException, IOException {
+		
+		String keyword = request.getParameter("keyword");
+		List<Book> result = null;
+		
+		if(keyword.equals("")) {
+			result = bookDAO.listAll();
+		}
+		else {
+			result = bookDAO.search(keyword);
+		}
+	
+		request.setAttribute("keyword", keyword);
+		request.setAttribute("result", result);
+		
+		String resultPage = "frontend/search_result.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(resultPage);
+		requestDispatcher.forward(request, response);
+	}
+	
 }
