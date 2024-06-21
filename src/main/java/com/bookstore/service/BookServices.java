@@ -193,17 +193,22 @@ public class BookServices {
 		requestDispatcher.forward(request, response);
 	}
 
-	public void viewBookDetail()throws ServletException, IOException {
-		
-		int bookId = Integer.parseInt(request.getParameter("id"));
+	public void viewBookDetail() throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
-		List<Category> listCategory = categoryDAO.listAll();
-		request.setAttribute("listCategory", listCategory);
-		request.setAttribute("book", book);
 		
-		String detailPage = "frontend/book_detail.jsp";
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
+		String destPage = "frontend/book_detail.jsp";
+		
+		if (book != null) {
+			request.setAttribute("book", book);
+			
+		} else {
+			destPage = "frontend/message.jsp";
+			String message = "Sorry, the book with ID " + bookId + " is not available.";
+			request.setAttribute("message", message);			
+		}
+
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destPage);
 		requestDispatcher.forward(request, response);
-		
 	}
 }
