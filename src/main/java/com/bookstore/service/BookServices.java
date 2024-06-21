@@ -201,7 +201,7 @@ public class BookServices {
 		request.setAttribute("listCategory", listCategory);
 		request.setAttribute("book", book);
 		
-		String detailPage = "frontend/book_list.jsp";
+		String detailPage = "frontend/book_detail.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
 		requestDispatcher.forward(request, response);
 		
