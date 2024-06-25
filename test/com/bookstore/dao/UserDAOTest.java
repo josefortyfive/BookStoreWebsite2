@@ -18,22 +18,21 @@ import jakarta.persistence.PersistenceException;
 import jakarta.persistence.RollbackException;
 
 
-public class UserDAOTest extends BaseDAOTest {
+public class UserDAOTest {
 	
 	private static UserDAO userDAO;
 	
 	@BeforeClass
 	public static void setupClass() throws Exception {
 
-		BaseDAOTest.setUpClass();
-		userDAO = new UserDAO(entityManager);
+		userDAO = new UserDAO();
 	}
 	@Test
 	public void testCreateUsers() {
 		Users user1 = new Users();
-		user1.setEmail("craig.david1@gmail.com");
-		user1.setFullName("Craig David");
-		user1.setPassword("david19");
+		user1.setEmail("joson.tatum@gmail.com");
+		user1.setFullName("Jason Tatum");
+		user1.setPassword("tatum1");
 
 		user1 = userDAO.create(user1);
 	
@@ -112,7 +111,7 @@ public class UserDAOTest extends BaseDAOTest {
 	@Test
 	public void testCount() {
 		long totalUser = userDAO.count();
-		assertEquals(10, totalUser);
+		assertEquals(19, totalUser);
 	}
 	
 	@Test
@@ -145,6 +144,6 @@ public class UserDAOTest extends BaseDAOTest {
 	
 	@AfterClass
 	public static void tearDownClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
+		userDAO.close();
 	}
 }
