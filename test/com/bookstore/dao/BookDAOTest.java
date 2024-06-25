@@ -19,19 +19,18 @@ import org.junit.jupiter.api.Test;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
 
-public class BookDAOTest extends BaseDAOTest {
+public class BookDAOTest {
 
 	private static BookDAO bookDAO;
 
 	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
-		BaseDAOTest.setUpClass();
-		bookDAO = new BookDAO(entityManager);
+		bookDAO = new BookDAO();
 	}
 
 	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
+		bookDAO.close();
 	}
 
 	@Test
@@ -42,17 +41,17 @@ public class BookDAOTest extends BaseDAOTest {
 		category.setCategoryId(1);
 		newBook.setCategory(category);
 
-		newBook.setTitle("Introduction to Algorithms, 7 edition");
-		newBook.setAuthor("Thomas H. Cormen");
-		newBook.setDescription("ome books on algorithms are rigorous but incomplete; others cover masses of material but lack rigor. Introduction to Algorithms uniquely combines rigor and comprehensiveness. ");
-		newBook.setPrice(107.95f);
-		newBook.setIsbn("026204630X");
+		newBook.setTitle("Calculus 8th Edition");
+		newBook.setAuthor("James Stewart");
+		newBook.setDescription("Success in your calculus course starts here! James Stewart's CALCULUS texts are world-wide best-sellers for a reason: they are clear, accurate, and filled with relevant, real-world examples. With CALCULUS, Eighth Edition, Stewart conveys not only the utility of calculus to help you develop technical competence, but also gives you an appreciation for the intrinsic beauty of the subject. His patient examples and built-in learning aids will help you build your mathematical confidence and achieve your goals in the course!");
+		newBook.setPrice(264.98f);
+		newBook.setIsbn("1285740629");
 
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-		Date publishDate = dateFormat.parse("07/08/2014");
+		Date publishDate = dateFormat.parse("05/15/2015");
 		newBook.setPublishDate(publishDate);
 
-		String imagePath = "C:\\Users\\Edmar\\Downloads\\dummy-data-books\\books\\Introduction to Algorithm.jpg";
+		String imagePath = "C:\\Users\\Edmar\\Downloads\\dummy-data-books\\books\\calculus.jpg";
 		byte[] imageByte = Files.readAllBytes(Paths.get(imagePath));
 		newBook.setImage(imageByte);
 
@@ -86,13 +85,13 @@ public class BookDAOTest extends BaseDAOTest {
 
 		bookDAO.update(existBook);
 
-		assertEquals(existBook.getTitle(), "Effective Java (2nd Edition)");
+		assertEquals(existBook.getTitle(), "Introduction to Algorithms, fourth edition");
 
 	}
 
 	@Test
 	public void testDeleteBookSuccess() {
-		Integer bookId = 2;
+		Integer bookId = 6;
 		bookDAO.delete(bookId);
 		assertTrue(true);
 	}
@@ -128,7 +127,7 @@ public class BookDAOTest extends BaseDAOTest {
 		for(Book book : result) {
 			System.out.println(book.getTitle() + " - " +book.getAuthor());
 		}
-		assertEquals(7, result.size());
+		assertEquals(6, result.size());
 	}
 	
 	@Test

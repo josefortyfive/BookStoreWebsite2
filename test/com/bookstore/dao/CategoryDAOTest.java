@@ -12,15 +12,13 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 
-class CategoryDAOTest extends BaseDAOTest {
+class CategoryDAOTest {
 
 	private static CategoryDAO categoryDAO;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-
-		BaseDAOTest.setUpClass();
-		categoryDAO = new CategoryDAO(entityManager);
+		categoryDAO = new CategoryDAO();
 	} 
 
  
@@ -29,7 +27,7 @@ class CategoryDAOTest extends BaseDAOTest {
 	@Test
 	public void testCreateCategory() {
 		Category category = new Category();
-		category.setName("Math");
+		category.setName("Science");
 		
 		category = categoryDAO.create(category);
 		
@@ -39,8 +37,8 @@ class CategoryDAOTest extends BaseDAOTest {
 	@DisplayName("Update Category Test")
 	@Test
 	public void testUpdateCategory() {
-		Category cat = new Category("Intemediate Java");
-		cat.setCategoryId(3);
+		Category cat = new Category("Physics");
+		cat.setCategoryId(17);
 		
 		Category category = categoryDAO.update(cat);
 		
@@ -96,11 +94,12 @@ class CategoryDAOTest extends BaseDAOTest {
 		assertNotNull(listCategory.size() > 0);
 	}
 	
+	
 	@Test
 	public void testCount() {
 		long totalCategory = categoryDAO.count();
 		System.out.println("Number of listed category "+totalCategory);
-		assertEquals(7, totalCategory);
+		assertEquals(9, totalCategory);
 	}
 	
 	@DisplayName("Find name of the category")
@@ -128,6 +127,6 @@ class CategoryDAOTest extends BaseDAOTest {
 	}
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
+		categoryDAO.close();
 	}
 }
