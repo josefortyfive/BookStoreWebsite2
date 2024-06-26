@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div align="center">
+<div class="center">
 	<div>
 		<img src="images/BookstoreLogo.png"/>
 	</div>
 	
-	<div class="center">
+	<div>
 		<form action="search" method="get">
 			<input type="text" name="keyword" size="50" />
 			<input type="submit" value="Search" />

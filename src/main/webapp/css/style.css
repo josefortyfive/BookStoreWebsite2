@@ -1,16 +1,16 @@
 @charset "ISO-8859-1";
 
-#headermenu{
+#headermenu {
 	display: table;
 }
 
 #headermenu div {
-	display:table-cell;
+	display:table-cell; 
 	padding-right: 20px;
 }
 
 a:link {
-	color: coinflowerBlue;
+	color: cornflowerBlue;
 	text-decoration: none;
 }
 
@@ -18,21 +18,23 @@ a:visited {
 	color: indigo;
 }
 
-a:hover{
-	color:blue;
+a:hover {
+	color: blue;
 	text-decoration: underline;
 }
 
-a:active{
-	color:red;
+a:active {
+	color: red;
 }
 
 #headermenu a:link {
 	font-size: larger;
 }
+
 .pageheading {
 	color: darkblue;
 }
+
 
 table {
 	border: 1px solid black;
@@ -43,7 +45,6 @@ th, td {
 	padding: 8px;
 }
 
-
 th {
 	background: darkblue;
 	color: cornsilk;
@@ -53,7 +54,7 @@ th {
 table.form {
 	border: 0;
 	padding: 4px;
-	width: 80;
+	width: 80%;
 	margin: 0 auto;
 }
 
@@ -62,29 +63,30 @@ button {
 	border-radius: 5px;
 }
 
+button[type=submit] {
+	font-weight: bold;
+}
+
 button:hover {
 	background-color: white;
 	color: green;
 }
 
-button[type=submit]{
-	font-weight: bold;
-}
 input {
 	border: 1px solid;
-	border-radius: 4px;
+	border-radius: 4px;	
 	border-color: green;
 	height: 20px;
 }
 
 .message {
-	font-style:italic;
-	color:blue;
+	font-style: italic;
+	color: blue;
 }
 
 .error {
 	color: red;
-	font-weight: bold;
+	font-style: italic;
 	margin: 5px;
 }
 
@@ -95,16 +97,66 @@ div.center {
 div.book {
 	display: inline-block;
 	margin: 20px;
-	border: 0;
 	text-align: center;
 }
 
-div.book-group {
-	width:80%; 
-	margin: 0 auto; 
-}
 table.book {
 	width: 80%;
 	border: 0;
 	margin: 0 auto;
+}
+
+div.book-group {
+	width: 80%;
+	margin: 0 auto;
+}
+
+div.next-row {
+	clear: both;
+}
+
+img.book-small {
+	width: 128px;
+	height: 180;
+}
+
+img.book-large {
+	width: 240px;
+	height: 300;
+}
+
+#book-title {
+	font-size: x-large;
+	font-weight: bold;
+}
+
+#author {
+	font-size: large;
+	font-style: italic;	
+}
+
+#description {
+	text-align: justify;
+	vertical-align: top;
+}
+
+
+#search-image{
+	display:inline-block; 
+	margin: 20px; 
+	width: 10%	
+}
+
+#search-description {
+	display:inline-block; 
+	margin: 20px; 
+	vertical-align: top; 
+	text-align: left;
+	width: 60%; 
+}
+
+#search-price {
+	display:inline-block; 
+	margin: 20px; 
+	vertical-align: top;
 }
