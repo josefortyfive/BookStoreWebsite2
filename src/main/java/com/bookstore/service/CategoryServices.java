@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
 
-import jakarta.persistence.EntityManager;
-
 public class CategoryServices {
 	private CategoryDAO categoryDAO;
 
