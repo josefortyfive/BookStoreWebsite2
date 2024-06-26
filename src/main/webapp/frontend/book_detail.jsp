@@ -10,8 +10,8 @@
 <body>
 	<jsp:directive.include file="header.jsp"/>
 	
-	<div align="center" >
-		<table width="80%" border="0">
+	<div class="center" >
+		<table class="book">
 			<tr style="">
 				<td colspan="3" align="left">
 					<h2>${book.title}</h2>by ${book.author}
