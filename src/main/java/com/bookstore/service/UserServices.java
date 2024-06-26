@@ -1,11 +1,5 @@
 package com.bookstore.service;
 
-import com.bookstore.dao.UserDAO;
-import com.bookstore.entity.Users;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -13,6 +7,9 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bookstore.dao.UserDAO;
+import com.bookstore.entity.Users;
 
 public class UserServices {
 

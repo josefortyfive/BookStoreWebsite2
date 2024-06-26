@@ -1,17 +1,12 @@
 package com.bookstore.service;
 
-import com.bookstore.dao.BookDAO;
-import com.bookstore.dao.CategoryDAO;
-import com.bookstore.entity.Book;
-import com.bookstore.entity.Category;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.text.SimpleDateFormat;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import jakarta.persistence.EntityManager;
+import com.bookstore.dao.BookDAO;
+import com.bookstore.dao.CategoryDAO;
+import com.bookstore.entity.Book;
+import com.bookstore.entity.Category;
 
 public class BookServices {
 
@@ -180,9 +178,7 @@ public class BookServices {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
 		List<Book> listBooks = bookDAO.listByCategory(categoryId);
 		Category category = categoryDAO.get(categoryId);
-		List<Category> listCategory = categoryDAO.listAll();
-		
-		request.setAttribute("listCategory", listCategory);
+
 		request.setAttribute("listBooks", listBooks);
 		request.setAttribute("category", category);
 		
@@ -194,8 +190,9 @@ public class BookServices {
 	public void viewBookDetail() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
-		
+
 		String destPage = "frontend/book_detail.jsp";
+		//request.setAttribute("book", book);
 		
 		if (book != null) {
 			request.setAttribute("book", book);
@@ -206,6 +203,7 @@ public class BookServices {
 			request.setAttribute("message", message);			
 		}
 
+		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destPage);
 		requestDispatcher.forward(request, response);
 	}
