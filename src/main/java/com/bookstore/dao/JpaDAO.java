@@ -3,9 +3,6 @@ package com.bookstore.dao;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.hibernate.boot.jaxb.hbm.spi.JaxbHbmNamedNativeQueryType;
-
 import java.util.Set;
 
 import jakarta.persistence.EntityManager;

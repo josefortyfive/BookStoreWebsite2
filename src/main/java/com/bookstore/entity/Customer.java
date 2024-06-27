@@ -12,6 +12,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
@@ -21,6 +23,11 @@ import jakarta.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "customer", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
+@NamedQueries({ 
+	@NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
+	@NamedQuery(name = "Customer.countAll", query = "SELECT COUNT(*) FROM Customer c")
+	
+})
 public class Customer implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

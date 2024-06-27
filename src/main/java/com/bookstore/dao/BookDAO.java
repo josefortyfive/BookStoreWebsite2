@@ -5,9 +5,6 @@ import java.util.List;
 
 import com.bookstore.entity.Book;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
-
 public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 
 	public BookDAO() {
