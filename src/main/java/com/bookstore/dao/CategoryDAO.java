@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.bookstore.entity.Category;
 
-import jakarta.persistence.EntityManager;
-
 public class CategoryDAO extends JpaDAO<Category> implements GenericDAO<Category> {
 
 	public CategoryDAO() {
