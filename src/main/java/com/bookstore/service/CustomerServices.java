@@ -127,4 +127,22 @@ public class CustomerServices {
 		listCustomer(message);
 		
 	}
+
+	public void deleteCustomer() throws ServletException, IOException{
+		Integer customerId = Integer.parseInt(request.getParameter("id"));
+		
+		Customer customer = customerDAO.get(customerId);
+		
+		String message = "Customer has been deleted successfully";
+		
+		if(customer == null) {
+			message = "Could not find customer with Id " +customerId + " customer might have already been delete";
+			request.setAttribute("message", message);
+		} else {
+			
+			customerDAO.delete(customerId);
+			listCustomer(message);
+		}
+		
+	}
 }
