@@ -25,6 +25,7 @@ import jakarta.persistence.UniqueConstraint;
 @Table(name = "customer", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 @NamedQueries({ 
 	@NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
+	@NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
 	@NamedQuery(name = "Customer.countAll", query = "SELECT COUNT(*) FROM Customer c")
 	
 })

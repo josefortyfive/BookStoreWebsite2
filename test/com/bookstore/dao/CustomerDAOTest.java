@@ -1,6 +1,7 @@
 package com.bookstore.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -91,6 +92,26 @@ class CustomerDAOTest {
 		System.out.println("Number of customer " + customerCount);
 		assertEquals(customerCount, 1);
 	}
+	
+	@Test
+	public void testFindByEmail() {
+		String email = "george@gmail.com";
+		Customer customer = customerDAO.findByEmail(email);
+		
+		System.out.println("Email address: " +customer.getEmail());
+		
+		assertEquals(customer.getEmail(), email);
+	}
+	
+	@Test
+	public void testFindByEmailNotFound() {
+		String email = "georg1e@gmail.com";
+		Customer customer = customerDAO.findByEmail(email);
+		
+		assertNull(customer);
+	}
+	
+	
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		customerDAO.close();
