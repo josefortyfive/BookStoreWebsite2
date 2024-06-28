@@ -40,4 +40,11 @@ public class CustomerServices {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
 		requestDispatcher.forward(request, response);
 	}
+
+	public void createCustomer() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		
+		
+		//customerDAO.create(null);
+	}
 }
