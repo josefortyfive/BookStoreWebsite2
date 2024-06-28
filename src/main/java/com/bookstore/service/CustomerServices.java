@@ -74,4 +74,57 @@ public class CustomerServices {
 			listCustomer(message);
 		}
 	}
+
+	public void editCustomer() throws ServletException, IOException  {
+		Integer customerId = Integer.parseInt(request.getParameter("id"));
+		Customer customer = customerDAO.get(customerId);
+		
+		String editPage = "customer_form.jsp";
+
+		request.setAttribute("customer", customer);
+		
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		requestDispatcher.forward(request, response);
+	}
+
+	public void updateCustomer() throws ServletException, IOException{
+		Integer customerId = Integer.parseInt(request.getParameter("customerId"));
+		String email = request.getParameter("email");
+		
+		Customer existCustomer = customerDAO.findByEmail(email);
+		
+		String message = null; 
+		if(existCustomer != null && existCustomer.getCustomerId() != customerId ) {
+			message = "Could not update the detail! " + email + " email already in use."; 
+		
+		} else {
+			
+			String fullname = request.getParameter("fullname");
+			String password = request.getParameter("password");
+			String phone = request.getParameter("phone");
+			String address = request.getParameter("address");
+			String city = request.getParameter("city");
+			String zipcode = request.getParameter("zipcode");
+			String country = request.getParameter("country");
+			
+			Customer customerById = customerDAO.get(customerId);
+			customerById.setCustomerId(customerId);
+			customerById.setEmail(email);
+			customerById.setFullname(fullname);
+			customerById.setPassword(password);
+			customerById.setPhone(phone);
+			customerById.setAddress(address);
+			customerById.setCity(city);
+			customerById.setZipcode(zipcode);
+			customerById.setCountry(country);
+			
+			customerDAO.update(customerById);
+			
+			message = "Customer's details has been updated";
+			
+		}
+		listCustomer(message);
+		
+	}
 }

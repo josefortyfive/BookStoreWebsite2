@@ -32,7 +32,7 @@
 	<div align="center">
 		<c:if test="${customer !=null}">
 			<form action="update_customer" method="post" id="customerForm">
-			<input type="hidden" name="bookId" value="${customer.customerId}">
+			<input type="hidden" name="customerId" value="${customer.customerId}">
 		</c:if>
 		<c:if test="${customer == null}">
 			<form action="create_customer" method="post" id="customerForm">
