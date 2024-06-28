@@ -7,8 +7,6 @@
 <title>Login</title>
 </head>
 <body>
-
-	
 	
 	<jsp:directive.include file="header.jsp"/>
 	<div align="center">

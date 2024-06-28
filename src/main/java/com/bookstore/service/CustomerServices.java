@@ -145,4 +145,44 @@ public class CustomerServices {
 		}
 		
 	}
+
+	public void registerCustomer() throws ServletException, IOException {
+		String email = request.getParameter("email");
+		Customer existCustomer = customerDAO.findByEmail(email);
+		String message = null;
+		if(existCustomer != null) {
+			message = "Could not register account, " +email + " already exist";
+			
+		} else {
+			String fullname = request.getParameter("fullname");
+			String password = request.getParameter("password");
+			String phone = request.getParameter("phone");
+			String address = request.getParameter("address");
+			String city = request.getParameter("city");
+			String zipcode = request.getParameter("zipcode");
+			String country = request.getParameter("country");
+			
+			Customer newCustomer = new Customer();
+			newCustomer.setEmail(email);
+			newCustomer.setFullname(fullname);
+			newCustomer.setPassword(password);
+			newCustomer.setPhone(phone);
+			newCustomer.setAddress(address);
+			newCustomer.setCity(city);
+			newCustomer.setZipcode(zipcode);
+			newCustomer.setCountry(country);
+			
+			customerDAO.create(newCustomer);
+			
+			message = "You have registered successfully"
+					+ "<a href='admin/login.jsp'>Click Here </a> to Signin";
+		}
+		
+		String messagePage = "frontend/message.jsp";
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(messagePage);
+		request.setAttribute("message", message);
+		requestDispatcher.forward(request, response);
+		
+	}
 }
