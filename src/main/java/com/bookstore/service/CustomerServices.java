@@ -50,23 +50,9 @@ public class CustomerServices {
 			listCustomer(message); 
 			
 		} else {
-			String fullname = request.getParameter("fullname");
-			String password = request.getParameter("password");
-			String phone = request.getParameter("phone");
-			String address = request.getParameter("address");
-			String city = request.getParameter("city");
-			String zipcode = request.getParameter("zipcode");
-			String country = request.getParameter("country");
-			
+
 			Customer newCustomer = new Customer();
-			newCustomer.setEmail(email);
-			newCustomer.setFullname(fullname);
-			newCustomer.setPassword(password);
-			newCustomer.setPhone(phone);
-			newCustomer.setAddress(address);
-			newCustomer.setCity(city);
-			newCustomer.setZipcode(zipcode);
-			newCustomer.setCountry(country);
+			updateCustomerFieldsForm(newCustomer);
 			
 			customerDAO.create(newCustomer);
 			
@@ -100,24 +86,12 @@ public class CustomerServices {
 		
 		} else {
 			
-			String fullname = request.getParameter("fullname");
-			String password = request.getParameter("password");
-			String phone = request.getParameter("phone");
-			String address = request.getParameter("address");
-			String city = request.getParameter("city");
-			String zipcode = request.getParameter("zipcode");
-			String country = request.getParameter("country");
-			
+
 			Customer customerById = customerDAO.get(customerId);
+			updateCustomerFieldsForm(customerById);
+			
 			customerById.setCustomerId(customerId);
-			customerById.setEmail(email);
-			customerById.setFullname(fullname);
-			customerById.setPassword(password);
-			customerById.setPhone(phone);
-			customerById.setAddress(address);
-			customerById.setCity(city);
-			customerById.setZipcode(zipcode);
-			customerById.setCountry(country);
+			
 			
 			customerDAO.update(customerById);
 			
@@ -128,6 +102,25 @@ public class CustomerServices {
 		
 	}
 
+	private void updateCustomerFieldsForm(Customer customer ) {
+		String email = request.getParameter("email");
+		String fullname = request.getParameter("fullname");
+		String password = request.getParameter("password");
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String city = request.getParameter("city");
+		String zipcode = request.getParameter("zipcode");
+		String country = request.getParameter("country");
+		
+		customer.setEmail(email);
+		customer.setFullname(fullname);
+		customer.setPassword(password);
+		customer.setPhone(phone);
+		customer.setAddress(address);
+		customer.setCity(city);
+		customer.setZipcode(zipcode);
+		customer.setCountry(country);
+	}
 	public void deleteCustomer() throws ServletException, IOException{
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
 		
@@ -154,24 +147,9 @@ public class CustomerServices {
 			message = "Could not register account, " +email + " already exist";
 			
 		} else {
-			String fullname = request.getParameter("fullname");
-			String password = request.getParameter("password");
-			String phone = request.getParameter("phone");
-			String address = request.getParameter("address");
-			String city = request.getParameter("city");
-			String zipcode = request.getParameter("zipcode");
-			String country = request.getParameter("country");
-			
+
 			Customer newCustomer = new Customer();
-			newCustomer.setEmail(email);
-			newCustomer.setFullname(fullname);
-			newCustomer.setPassword(password);
-			newCustomer.setPhone(phone);
-			newCustomer.setAddress(address);
-			newCustomer.setCity(city);
-			newCustomer.setZipcode(zipcode);
-			newCustomer.setCountry(country);
-			
+			updateCustomerFieldsForm(newCustomer);
 			customerDAO.create(newCustomer);
 			
 			message = "You have registered successfully"
