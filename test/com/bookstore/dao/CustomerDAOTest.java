@@ -111,7 +111,26 @@ class CustomerDAOTest {
 		assertNull(customer);
 	}
 	
+	@Test
+	public void testCheckLoginSuccess() {
+		String email = "georg1e@gmail.com";
+		String password = "secret";
+		
+		Customer customer = customerDAO.checkLogin(email, password);
+		
+		assertNotNull(customer);
+	}
 	
+	
+	@Test
+	public void testCheckLoginFail() {
+		String email = "georg1e2@gmail.com";
+		String password = "secret";
+		
+		Customer customer = customerDAO.checkLogin(email, password);
+		
+		assertNull(customer);
+	}
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		customerDAO.close();
