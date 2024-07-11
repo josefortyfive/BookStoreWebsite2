@@ -14,7 +14,7 @@
 		
 		
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="admin/login.jsp">Sign In</a>  |
+			<a href="login">Sign In</a>  |
 			<a href="register">Register</a> |
 			<a href="view_cart">Cart</a>
 		</form>

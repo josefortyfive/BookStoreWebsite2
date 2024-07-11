@@ -163,4 +163,18 @@ public class CustomerServices {
 		requestDispatcher.forward(request, response);
 		
 	}
+
+	public void showLogin() throws ServletException, IOException {
+		
+		String loginPage = "frontend/login.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(loginPage);
+		dispatcher.forward(request, response);
+	}
+
+	public void doLogin() throws ServletException, IOException  {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		
+		
+	}
 }
