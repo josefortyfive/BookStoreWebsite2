@@ -42,7 +42,7 @@
 			</tr>
 			<tr><td>&nbsp;</td></tr>
 			<tr>
-				<td colspan="2" align="center"><a href="edit_profile">Edit My Profile</a></td>
+				<td colspan="2" align="center"><a href="edit_customer">Edit My Profile</a></td>
 			</tr>
 		</table>
 	</div>
