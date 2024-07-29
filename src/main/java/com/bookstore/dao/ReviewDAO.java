@@ -15,22 +15,22 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 	
 	@Override
 	public Review get(Object reviewId) {
-		return super.find(Review.class, reviewId);
+		return super.find(Review.class, reviewId); 
 	}
 
 	@Override
-	public void delete(Object id) {
-		
+	public void delete(Object reviewId) {
+		 super.delete(Review.class, reviewId);
 	}
 
 	@Override
 	public List<Review> listAll() {
-		return null;
+		return super.findWithNamedQuery("Review.listAll");
 	}
 
 	@Override
 	public long count() {
-		return 0;
+		return super.countWithNamedQuery("Review.countAll");
 	}
 
 }

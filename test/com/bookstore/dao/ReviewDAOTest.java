@@ -6,6 +6,8 @@ import com.bookstore.entity.Customer;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -69,7 +71,32 @@ public class ReviewDAOTest {
 		assertEquals(review.getHeadline(), updateReview.getHeadline());
 	}
 	
+	@Test
+	public void testDeleteReview() {
+		Integer reviewId = 5;
+		
+		reviewDAO.delete(reviewId);
+		
+	}
 	
+	@Test
+	public void testListAll() {
+		List<Review> listReview = reviewDAO.listAll();
+		
+		for(Review review : listReview) {
+				System.out.println("->" +review.getReviewId() + " " +review.getBook().getTitle() + " - " +review.getCustomer().getFullname()) ;
+		}
+		assertTrue(listReview.size() > 0);
+	}
+	
+	@Test
+	public void testCount() {
+		long totalReviews = reviewDAO.count();
+		
+		System.out.println("Number of reviews " +totalReviews);
+		
+		assertTrue(totalReviews > 0 );
+	}
 	@AfterAll
 	public static void tearDownAfterClass() throws Exception {
 		reviewDAO.close();
