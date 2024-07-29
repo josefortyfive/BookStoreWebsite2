@@ -25,7 +25,7 @@ public class BookDAOTest {
 
 	@BeforeAll
 	public static void setUpBeforeClass() throws Exception {
-		bookDAO = new BookDAO();
+		bookDAO = new BookDAO(); 
 	}
 
 	@AfterAll
