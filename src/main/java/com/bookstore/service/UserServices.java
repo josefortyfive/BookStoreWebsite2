@@ -21,7 +21,7 @@ public class UserServices {
 	public UserServices(HttpServletRequest request,HttpServletResponse response ) {
 		this.request = request;
 		this.response = response;
-		userDAO = new UserDAO();
+		userDAO = new UserDAO(); 
 	}
 	
 	public void listUser() throws ServletException, IOException {

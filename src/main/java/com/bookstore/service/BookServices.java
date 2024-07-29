@@ -29,7 +29,7 @@ public class BookServices {
 	public BookServices( HttpServletRequest request, HttpServletResponse response) {
 		super();
 		this.request = request;
-		this.response = response;
+		this.response = response; 
 		bookDAO = new BookDAO();
 		categoryDAO = new CategoryDAO();
 	}
