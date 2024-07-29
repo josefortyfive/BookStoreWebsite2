@@ -21,7 +21,7 @@ class CustomerDAOTest {
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		customerDAO = new CustomerDAO();
-	}
+	} 
 
 	@Test
 	public void testCreateCustomer() {

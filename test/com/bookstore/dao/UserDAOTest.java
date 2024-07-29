@@ -25,7 +25,7 @@ public class UserDAOTest {
 	@BeforeClass
 	public static void setupClass() throws Exception {
 
-		userDAO = new UserDAO();
+		userDAO = new UserDAO(); 
 	}
 	@Test
 	public void testCreateUsers() {
