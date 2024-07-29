@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Review;
+import com.bookstore.entity.Users;
 
 public class ReviewServices {
 
@@ -75,6 +76,25 @@ public class ReviewServices {
 		
 		String message = "The review has been updated successfully";
 		listAllReviews(message);
+		
+	}
+
+
+	public void deleteReview() throws ServletException, IOException{
+		int reviewId = Integer.parseInt(request.getParameter("id"));
+		
+		Review review = reviewDAO.get(reviewId);
+		String message = "Review has been deleted successfully";
+		
+		if(review == null) {
+			message = "Could not find review with Id " +reviewId +", or it might have been deleted already";
+			
+			request.setAttribute("message", message);
+		} else {
+			reviewDAO.delete(reviewId);
+			listAllReviews(message);
+		}
+		
 		
 	}
 	

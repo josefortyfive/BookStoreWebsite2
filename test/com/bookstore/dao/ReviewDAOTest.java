@@ -34,9 +34,9 @@ public class ReviewDAOTest {
 		review.setBook(book);
 		review.setCustomer(customer);
 		
-		review.setHeadline("This is a very good book. Highly recommended");
+		review.setHeadline("Really Good Book!");
 		review.setRating(5);
-		review.setComment("I have just read this book. Very good!");
+		review.setComment("The book is very good!");
 		
 		Review savedReview = reviewDAO.create(review);
 		
