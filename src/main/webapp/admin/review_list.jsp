@@ -47,8 +47,8 @@
 					<td>${review.customer.fullname}</td>
 					<td>${review.reviewTime}</td>
 					<td>
-						<a href="edit_customer?id=${customer.customerId}">Edit</a>
-						<a href="javascript:void(0);" class="deleteLink" id="${customer.customerId}">Delete</a>
+						<a href="edit_review?id=${review.reviewId}">Edit</a> &nbsp;
+						<a href="javascript:void(0);" class="deleteLink" id="${review.reviewId}">Delete</a>
 					</td>
 				</tr>
 			</c:forEach>
@@ -61,9 +61,9 @@
 	$(document).ready(function(){
 		$(".deleteLink").each(function(){
 			$(this).on("click", function(){
-				customerId= $(this).attr("id");
-				if (confirm('Are you sure you want to delete the user with ID ' +customerId + '? ')){
-					window.location = 'delete_customer?id=' +customerId;
+				reviewId= $(this).attr("id");
+				if (confirm('Are you sure you want to delete the review with ID ' +reviewId + '? ')){
+					window.location = 'delete_review?id=' +reviewId;
 				}
 			});
 		});
