@@ -40,7 +40,7 @@ import jakarta.persistence.UniqueConstraint;
 public class Book implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int bookId;
+	private Integer bookId;
 	private Category category;
 	private String title;
 	private String author;
@@ -219,11 +219,34 @@ public class Book implements java.io.Serializable {
 	public void setBase64Image(String base64Image) {
 		this.base64Image = base64Image;
 	}
+	
+	@Transient
+	public float getAverageRating() {
+		float averageRating = 0.0f;
+		float sum = 0.0f;
+		
+		if(reviews.isEmpty()) {
+			return 0.0f;
+		}
+		
+		for(Review review : reviews) {
+			sum += review.getRating();
+		}
+		
+		averageRating = sum / reviews.size();
+		
+		return averageRating;
+	}
 
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(bookId);
+		
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((bookId == null) ? 0 : bookId.hashCode()); 
+		
+		return result;
 	}
 
 	@Override
