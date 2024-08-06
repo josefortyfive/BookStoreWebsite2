@@ -239,6 +239,30 @@ public class Book implements java.io.Serializable {
 	}
 
 
+	@Transient
+	public String getRatingString(float averageRating) {
+		String result = "";
+		
+		int numberOfStarOn = (int) averageRating;
+		
+		for(int i = 1; i <= numberOfStarOn; i++) {
+			result += "on,";
+		}
+		
+		
+		int next = numberOfStarOn + 1;
+		
+		if(averageRating > numberOfStarOn) {
+			result += "half,";
+			next++;
+		}
+		
+		for(int j = next ; j <= 5; j++) {
+			result += "off,";
+		}
+		
+		return result.substring(0, result.length() - 1);
+	}
 	@Override
 	public int hashCode() {
 		
