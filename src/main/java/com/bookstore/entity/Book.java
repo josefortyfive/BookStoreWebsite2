@@ -105,6 +105,7 @@ public class Book implements java.io.Serializable {
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
 	}
+	
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "category_id", nullable = false)
