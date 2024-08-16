@@ -26,17 +26,17 @@ public class ReviewDAOTest {
 	public void testCreateReview() {
 		Review review = new Review();
 		Book book = new Book();
-		book.setBookId(1);
+		book.setBookId(18);
 		
 		Customer customer = new Customer();
-		customer.setCustomerId(3);
+		customer.setCustomerId(7);
 		
 		review.setBook(book);
 		review.setCustomer(customer);
 		
-		review.setHeadline("Really Good Book!");
+		review.setHeadline("Great Book!");
 		review.setRating(5);
-		review.setComment("The book is very good!");
+		review.setComment("Buy this book if you want to improve your Java skills.");
 		
 		Review savedReview = reviewDAO.create(review);
 		
