@@ -98,11 +98,11 @@ public class Book implements java.io.Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "book_id", unique = true, nullable = false)
-	public int getBookId() {
+	public Integer getBookId() {
 		return this.bookId;
 	}
 
-	public void setBookId(int bookId) {
+	public void setBookId(Integer bookId) {
 		this.bookId = bookId;
 	}
 	
