@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.Comparator;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -193,7 +196,17 @@ public class Book implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<Review> getReviews() {
-		return this.reviews;
+		TreeSet<Review> sortedReview = new TreeSet<>(new Comparator<Review>() {
+			@Override
+			public int compare(Review review1, Review review2) {
+				return review2.getReviewTime().compareTo(review1.getReviewTime());
+			}
+			
+		});
+		
+		sortedReview.addAll(reviews);
+		return sortedReview;
+		
 	}
 
 	public void setReviews(Set<Review> reviews) {

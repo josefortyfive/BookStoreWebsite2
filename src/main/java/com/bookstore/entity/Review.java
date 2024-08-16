@@ -16,6 +16,7 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import jakarta.persistence.Transient;
 
 
 @Entity
@@ -117,6 +118,23 @@ public class Review implements java.io.Serializable {
 
 	public void setReviewTime(Date reviewTime) {
 		this.reviewTime = reviewTime;
+	}
+	
+	@Transient
+	public String getStars() {
+		String result = "";
+		
+		int numberOfStarOn = (int) rating;
+		
+		for(int i = 1; i <= numberOfStarOn; i++) {
+			result += "on,";
+		}
+		
+		for(int j = numberOfStarOn + 1; j <= 5; j++) {
+			result += "off,";
+		}
+		
+		return result.substring(0, result.length() - 1);
 	}
 
 }
