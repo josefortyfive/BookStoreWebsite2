@@ -45,6 +45,28 @@ public class ReviewDAOTest {
 	}
 	
 	@Test
+	public void testCreateReview02() {
+		Review review = new Review();
+		Book book = new Book();
+		book.setBookId(4);
+		
+		Customer customer = new Customer();
+		customer.setCustomerId(5);
+		
+		review.setBook(book);
+		review.setCustomer(customer);
+		
+		review.setHeadline("Nice Book");
+		review.setRating(4);
+		review.setComment("Cool Book");
+		
+		Review savedReview = reviewDAO.create(review);
+		
+		assertTrue(savedReview.getReviewId() > 0);
+	
+	}
+	
+	@Test
 	public void testGet() {
 		Integer reviewId = 5;
 		Review review = reviewDAO.get(reviewId);
