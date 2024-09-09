@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Review;
-import com.bookstore.entity.Users;
 
 public class ReviewServices {
 
@@ -96,6 +95,13 @@ public class ReviewServices {
 		}
 		
 		
+	}
+
+
+	public void showReviewForm() throws ServletException, IOException {
+		String targetPage = "frontend/review_form.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(targetPage);
+		dispatcher.forward(request, response);
 	}
 	
 }

@@ -7,6 +7,7 @@
 	<meta charset="ISO-8859-1">
 	<title>${book.title} Books </title>
 	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp"/>
@@ -43,7 +44,7 @@
 			<tr>
 				<td><h2><a id="reviews">Customer Reviews</a></h2></td>
 				<td colspan="2" align="center">
-					<button>Write a Customer review</button>
+					<button id="buttonWriteReview">Write a Customer review</button>
 				</td>
 			</tr>
 			<tr>
@@ -80,6 +81,13 @@
 	
 
 	<jsp:directive.include file="footer.jsp"/>
-	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#buttonWriteReview").click(function(){
+				window.location = 'write_review?book_id=' +${book.bookId};
+			});
+		});
+
+	</script>
 </body>
 </html>
