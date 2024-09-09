@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.CustomerDAO;
 import com.bookstore.entity.Customer;
@@ -178,22 +179,31 @@ public class CustomerServices {
 		dispatcher.forward(request, response);
 	}
 
-	public void doLogin() throws ServletException, IOException  {
+	public void doLogin() throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		
 		Customer customer = customerDAO.checkLogin(email, password);
 		
-		if(customer == null) {
-			String message = "Login failed. Please check you username and password";
+		if (customer == null) {
+			String message = "Login failed. Please check your email and password.";
 			request.setAttribute("message", message);
 			showLogin();
-		} else {
-			request.getSession().setAttribute("loggedCustomer", customer);
 			
-			showCustomerProfile();
+		} else {
+			HttpSession session = request.getSession();
+			session.setAttribute("loggedCustomer", customer);
+			
+			Object objRedirectURL = session.getAttribute("redirectURL");
+			
+			if (objRedirectURL != null) {
+				String redirectURL = (String) objRedirectURL;
+				session.removeAttribute("redirectURL");
+				response.sendRedirect(redirectURL);
+			} else {
+				showCustomerProfile();
+			}
 		}
-		
 	}
 	
 	public void showCustomerProfile() throws ServletException, IOException {
