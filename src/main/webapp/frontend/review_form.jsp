@@ -6,7 +6,7 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" href="css/style.css">
-	<title>Write Review</title>
+	<title>Write Review - Online book Store</title>
 	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 <title>Customer Login</title>
@@ -15,32 +15,11 @@
 
 	<jsp:directive.include file="header.jsp"/>
 	<div align = "center">
-		<h1>Book Store Administrator</h1>
-		<h2>Write a Review</h2>
-		<div>
-			<c:if test="${message != null}">
-				<div align = "center">
-					<h4 class="message">${message}</h4>
-				</div>
-			</c:if>
-		</div>
-		<form id="loginForm" action="login" method="post">
-			<table>
+		<form>
+			<table class="normal">
 				<tr>
-					<td>Email:</td>
-					<td><input type="text" name="email" id="email" size="20"/></td>
-					
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type="password" name="password" id="password" size="20"/></td>
-					
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<button type="submit">Login</button>
-						<button>Cancel</button>
-					</td>
+					<td><h2>You Reviews</h2></td>
+					<td>${loggedCustomer.fullname}</td>
 				</tr>
 			</table>
 		</form>
