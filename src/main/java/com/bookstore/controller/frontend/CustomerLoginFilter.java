@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
 public class CustomerLoginFilter extends HttpFilter implements Filter {
        
 	private static final String[] loginRequiredURLs = {
-			"/view_profile", "/edit_profile", "/update_profile"
+			"/view_profile", "/edit_profile", "/update_profile", "/write_review"
 	};
 	private static final long serialVersionUID = 1L;
 
