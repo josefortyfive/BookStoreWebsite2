@@ -6,16 +6,18 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/jquery.rateyo.min.css">
 	<title>Write Review - Online book Store</title>
 	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/jquery.rateyo.min.js"></script>
 	<title>Customer Login</title>
 </head>
 <body>
 
 	<jsp:directive.include file="header.jsp"/>
 	<div align = "center">
-		<form>
+		<form id="reviewForm" action="submit_review" method="post">
 			<table class="normal" width="60%">
 				<tr>
 					<td><h2>Your Reviews</h2></td>
@@ -31,11 +33,21 @@
 						<img class="book-large" src="data:image/jpg;base64, ${book.base64Image}"/>
 					</td>
 					<td>
+						<div id="rateYo"></div>
+						<input type="hidden" id="rating" name="rating"/>
+						<input type="hidden" name="bookId" value="${book.bookId}"/>
+						<br/>
 						<input type="text" name="headline" size="60" placeholder="Headline or summary for your review (required)"/>
 						<br/>
 						<br/>
 						<textarea name="comment" cols="70" rows="10" placeholder="Write your review details"></textarea>
-						
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3" align="center">
+						<button type="submit">Submit</button>
+						&nbsp;&nbsp;
+						<button id="buttonCancel">Cancel</button>
 					</td>
 				</tr>
 			</table>
@@ -48,21 +60,26 @@
 
 
 	$(document).ready(function(){
-		$("#loginForm").validate({
+		$("#reviewForm").validate({
 			rules:{
-				email: {
-					required: true,
-					email: true
-				},
-				password: "required"
+				headline: "required",
+				comment: "required"
 			},
 			messages : {
-				email: {
-					required: "Please enter email",
-					email: "Please enter an valid email address"
-				},
-				password: "Password is required!"
+				headline: "Please enter a headline",
+				comment: "Please enter a comment!"
 			}
+		});
+		$("#rateYo").rateYo({
+			starWidth: "40px",
+			fullStar: true,
+			onSet: function (rating, rateYoInstance) {
+				$("#rating").val(rating);
+			}
+		});
+		
+		$("#buttonCancel").click(function(){
+			history.back();
 		});
 	});
 
