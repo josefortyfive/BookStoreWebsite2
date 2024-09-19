@@ -16,10 +16,27 @@
 	<jsp:directive.include file="header.jsp"/>
 	<div align = "center">
 		<form>
-			<table class="normal">
+			<table class="normal" width="60%">
 				<tr>
 					<td><h2>Your Reviews</h2></td>
+					<td>&nbsp;</td>
 					<td><h2>${loggedCustomer.fullname}</h2></td>
+				</tr>
+				<tr>
+					<td colspan="3"><hr/></td>
+				</tr>
+				<tr>
+					<td>
+						<span id ="book-title">${book.title}</span><br/>
+						<img class="book-large" src="data:image/jpg;base64, ${book.base64Image}"/>
+					</td>
+					<td>
+						<input type="text" name="headline" size="60" placeholder="Headline or summary for your review (required)"/>
+						<br/>
+						<br/>
+						<textarea name="comment" cols="70" rows="10" placeholder="Write your review details"></textarea>
+						
+					</td>
 				</tr>
 			</table>
 		</form>
