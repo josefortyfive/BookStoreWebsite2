@@ -9,7 +9,7 @@
 	<title>Write Review - Online book Store</title>
 	<script type="text/javascript" src="js/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<title>Customer Login</title>
+	<title>Customer Login</title>
 </head>
 <body>
 
@@ -18,8 +18,8 @@
 		<form>
 			<table class="normal">
 				<tr>
-					<td><h2>You Reviews</h2></td>
-					<td>${loggedCustomer.fullname}</td>
+					<td><h2>Your Reviews</h2></td>
+					<td><h2>${loggedCustomer.fullname}</h2></td>
 				</tr>
 			</table>
 		</form>
