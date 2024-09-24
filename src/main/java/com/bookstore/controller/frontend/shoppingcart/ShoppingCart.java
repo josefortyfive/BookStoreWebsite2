@@ -58,6 +58,10 @@ public class ShoppingCart {
 	public void clear() {
 		cart.clear();
 	}
+	
+	public int getTotalItems() {
+		return cart.size();
+	}
 	public Map<Book, Integer> getItems(){
 		return this.cart;
 	}
