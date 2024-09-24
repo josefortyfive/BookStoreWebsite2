@@ -5,6 +5,7 @@ import java.util.Map;
 import com.bookstore.entity.Book;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class ShoppingCart {
 	private Map<Book, Integer> cart = new HashMap<>();
@@ -20,6 +21,43 @@ public class ShoppingCart {
 		}
 	}
 	
+	public void removeItem(Book book) {
+		cart.remove(book);
+	}
+	
+	public int getTotalQuantity() {
+		int total = 0;
+		
+		Iterator<Book> iterator = cart.keySet().iterator();
+		
+		while(iterator.hasNext()) {
+			Book next = iterator.next();
+			Integer quantity = cart.get(next);
+			total += quantity;
+			
+		}
+		return total;
+		
+	}
+	
+	public double getTotalAmount() {
+		double total = 0.0f;
+		
+		Iterator<Book> iterator = cart.keySet().iterator();
+		
+		while(iterator.hasNext()) {
+			Book book = iterator.next();
+			Integer quantity = cart.get(book);
+			double subTotal = quantity * book.getPrice();
+			total += subTotal;	
+		}
+		
+		return total;
+	}
+	
+	public void clear() {
+		cart.clear();
+	}
 	public Map<Book, Integer> getItems(){
 		return this.cart;
 	}
