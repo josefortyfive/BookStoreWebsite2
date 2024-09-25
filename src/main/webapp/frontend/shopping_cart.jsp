@@ -30,8 +30,9 @@
 			</c:if>
 			
 			<c:if test="${cart.totalItems > 0 }">
-				<div>
-					<form>
+				
+					<form action="update_cart" method="post" id="cartForm">
+						<div>
 						<table  border="1">
 							<tr>
 								<th>No</th>
@@ -49,13 +50,13 @@
 									<td>
 										<img class="book-small" src="data:image/jpg;base64, ${item.key.base64Image}"/>
 											&nbsp;&nbsp;
-										
-									
 									</td>
 									<td>
 										<span id="book-title">${item.key.title}</span>
 									</td>
-									<td>${item.value}</td>
+									<td>
+										<input type="text" name="quantity${status.index + 1}" value="${item.value}" size="5"/>
+									</td>
 									<td><fmt:formatNumber value="${item.key.price}" type="currency"/></td>
 									<td><fmt:formatNumber value="${item.value * item.key.price}" type="currency"/></td>
 									<td><a href="remove_from_cart?book_id=${item.key.bookId}">Remove</a></td>
@@ -71,8 +72,19 @@
 								<td colspan="2"><b><fmt:formatNumber value="${cart.totalAmount}" type="currency"/></b></td>
 							</tr>
 						</table>
+						</div>
+						<div>
+							<table class="normal">
+								<tr>
+									<td></td>
+									<td><button type="submit">Update</button></td>
+									<td><a href="${pageContext.request.contextPath}/">Continue Shopping</a></td>
+									<td><a href="">Checkout</a></td>
+								</tr>
+							</table>
+						</div>
 					</form>
-				</div>
+			
 			</c:if>
 			
 			
@@ -84,20 +96,23 @@
 
 
 	$(document).ready(function(){
-		$("#loginForm").validate({
+		$("#cartForm").validate({
 			rules:{
-				email: {
-					required: true,
-					email: true
-				},
-				password: "required"
+				<c:forEach items="${cart.items}" var="item" varStatus="status">
+					quantity${status.index + 1}: { 
+						required: true,
+						number: true,
+						min : 1
+					},
+				</c:forEach>
 			},
 			messages : {
-				email: {
-					required: "Please enter email",
-					email: "Please enter an valid email address"
-				},
-				password: "Password is required!"
+				<c:forEach items="${cart.items}" var="item" varStatus="status">
+					quantity${status.index + 1}: { 
+						required: "Please enter quantity", 
+						number: "Quantity must be a number",
+						min: "Quantity must be greater than zero"},
+				</c:forEach>
 			}
 		});
 	});
