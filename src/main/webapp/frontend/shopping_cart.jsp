@@ -55,6 +55,7 @@
 										<span id="book-title">${item.key.title}</span>
 									</td>
 									<td>
+										<input type="hidden" name="bookId" value="${item.key.bookId}"/>
 										<input type="text" name="quantity${status.index + 1}" value="${item.value}" size="5"/>
 									</td>
 									<td><fmt:formatNumber value="${item.key.price}" type="currency"/></td>
