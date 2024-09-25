@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Manage Book - Evergreen Bookstore Administration</title>
+	<title>Manage Book - M.A.'s Bookstore Administration</title>
 	<link rel="stylesheet" href="../css/style.css">
 	<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
 	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
