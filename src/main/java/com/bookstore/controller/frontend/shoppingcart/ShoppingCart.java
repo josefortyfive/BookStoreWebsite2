@@ -40,7 +40,17 @@ public class ShoppingCart {
 		
 	}
 	
+	
+	public void updateCart(int[] bookIds, int[] quantities) {
+		for(int i = 0; i < bookIds.length; i++) {
+			Book key = new Book(bookIds[i]);
+			Integer value = quantities[i];
+			cart.put(key, value);
+		}
+	}
+	
 	public double getTotalAmount() {
+	
 		double total = 0.0f;
 		
 		Iterator<Book> iterator = cart.keySet().iterator();
