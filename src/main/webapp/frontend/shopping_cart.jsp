@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+   <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +28,53 @@
 			<c:if test="${cart.totalItems == 0 }">
 				<h2>There's no item in your cart</h2>
 			</c:if>
+			
+			<c:if test="${cart.totalItems > 0 }">
+				<div>
+					<form>
+						<table  border="1">
+							<tr>
+								<th>No</th>
+								<th colspan="2">Book</th>
+								<th>Quantity</th>
+								<th>Price</th>
+								<th>Subtotal</th>
+								<th>
+									<a href=""><b>Clear Cart</b></a>
+								</th>
+							</tr>
+							<c:forEach items="${cart.items}" var="item" varStatus="status">
+								<tr>
+									<td>${status.index + 1}</td>
+									<td>
+										<img class="book-small" src="data:image/jpg;base64, ${item.key.base64Image}"/>
+											&nbsp;&nbsp;
+										
+									
+									</td>
+									<td>
+										<span id="book-title">${item.key.title}</span>
+									</td>
+									<td>${item.value}</td>
+									<td><fmt:formatNumber value="${item.key.price}" type="currency"/></td>
+									<td><fmt:formatNumber value="${item.value * item.key.price}" type="currency"/></td>
+									<td><a href="">Remove</a></td>
+								</tr>
+							
+							</c:forEach>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td><b>${cart.totalQuantity} book(s)</b></td>
+								<td>Total:</td>
+								<td colspan="2"><b><fmt:formatNumber value="${cart.totalAmount}" type="currency"/></b></td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</c:if>
+			
 			
 	</div>
 	
