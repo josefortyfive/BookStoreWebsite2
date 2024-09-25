@@ -41,7 +41,7 @@
 								<th>Price</th>
 								<th>Subtotal</th>
 								<th>
-									<a href=""><b>Clear Cart</b></a>
+									
 								</th>
 							</tr>
 							<c:forEach items="${cart.items}" var="item" varStatus="status">
@@ -76,9 +76,11 @@
 						</div>
 						<div>
 							<table class="normal">
+								<tr><td>&nbsp; </td></tr>
 								<tr>
 									<td></td>
 									<td><button type="submit">Update</button></td>
+									<td><input type="button" id="clearCart" value="Clear Cart"></td>
 									<td><a href="${pageContext.request.contextPath}/">Continue Shopping</a></td>
 									<td><a href="">Checkout</a></td>
 								</tr>
@@ -115,6 +117,10 @@
 						min: "Quantity must be greater than zero"},
 				</c:forEach>
 			}
+		});
+		
+		$("#clearCart").click(function(){
+			window.location = 'clear_cart';
 		});
 	});
 
