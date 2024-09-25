@@ -17,8 +17,7 @@ Here are the features in this page
   5. Review
 
 Implemented login as well for unauthorized person to not login.
-
-
+Customer is add books to cart.
 
 
   
