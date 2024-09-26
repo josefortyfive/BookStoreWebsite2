@@ -14,6 +14,12 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 		order.setStatus("Processing");
 		return super.create(order);
 	}
+	
+	@Override
+	public BookOrder update(BookOrder order) {
+		return super.update(order);
+	}
+	
 	@Override
 	public BookOrder get(Object orderId) {
 		
