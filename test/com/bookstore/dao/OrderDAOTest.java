@@ -63,9 +63,9 @@ class OrderDAOTest {
 		customer.setCustomerId(7);
 		
 		order.setCustomer(customer);
-		order.setRecipientName("Nam Ha Minh");
+		order.setRecipientName("John Kennedy");
 		order.setRecipientPhone("123456789");
-		order.setShippingAddress("123 South Street, New York, USA");
+		order.setShippingAddress("911 North Street, Alabama, USA");
 		
 		Set<OrderDetail> orderDetails = new HashSet<>();
 		OrderDetail orderDetail1 = new OrderDetail();
