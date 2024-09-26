@@ -5,7 +5,6 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
@@ -42,6 +41,7 @@ import jakarta.persistence.Transient;
 })
 public class BookOrder implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer orderId;
 	private Customer customer;
 	private Date orderDate;

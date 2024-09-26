@@ -3,6 +3,7 @@ package com.bookstore.dao;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.AfterAll;
@@ -113,8 +114,20 @@ class OrderDAOTest {
 	}
 
 	@Test
-	void testListAll() {
-		fail("Not yet implemented");
+	public void testListAll() {
+		List<BookOrder> listOrders = orderDAO.listAll();
+		
+		for(BookOrder order : listOrders) {
+			System.out.println(order.getOrderId() + " - " + order.getCustomer().getFullname() + " - " + order.getTotal()+ " - " + order.getStatus());
+			for( OrderDetail detail : order.getOrderDetails()) {
+				Book book = detail.getBook();
+				int quantity = detail.getQuantity();
+				float subtotal = detail.getSubtotal();
+				System.out.println("\t" +book.getTitle() + " - " + quantity+ " - " +subtotal);
+			}
+		}
+		
+		assertTrue(listOrders.size() > 0);
 	}
 
 	@Test
