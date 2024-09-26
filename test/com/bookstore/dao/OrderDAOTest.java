@@ -3,6 +3,7 @@ package com.bookstore.dao;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -108,6 +109,56 @@ class OrderDAOTest {
 		assertEquals(2, order.getOrderDetails().size());
 	}
 
+	@Test
+	void testUpdateBookOrderShippingAddress() {
+		Integer orderId = 4;
+		BookOrder order = orderDAO.get(orderId);
+		order.setShippingAddress("New Shipping Address");
+	
+		orderDAO.update(order);
+		
+		BookOrder updateOrder = orderDAO.get(orderId);
+		assertEquals(order.getShippingAddress(), updateOrder.getShippingAddress());
+		
+		
+	}
+	
+	@Test
+	void testUpdateBookOrderDetail() {
+		Integer orderId = 6;
+		BookOrder order = orderDAO.get(orderId);
+		Iterator<OrderDetail> iterator = order.getOrderDetails().iterator();
+		
+		while(iterator.hasNext()) {
+			OrderDetail orderDetail = iterator.next();
+			if(orderDetail.getBook().getBookId() == 7) {
+				orderDetail.setQuantity(3);
+				orderDetail.setSubtotal(120);
+			}
+		}
+		
+		orderDAO.update(order);
+
+		
+		BookOrder updateOrder = orderDAO.get(orderId);
+		
+		int expectedQuantity = 3;
+		float expectedSubtotal = 120;
+		int actualQuantity = 0;
+		float actualSubtotal = 0;
+		
+		while(iterator.hasNext()) {
+			OrderDetail orderDetail = iterator.next();
+			if(orderDetail.getBook().getBookId() == 4) {
+				actualQuantity = orderDetail.getQuantity();
+				actualSubtotal = orderDetail.getSubtotal();
+			}
+		}
+		
+		assertEquals(expectedQuantity , actualQuantity);
+		assertEquals(expectedSubtotal, actualSubtotal, 0.0f);
+		
+	}
 	@Test
 	void testDeleteObject() {
 		fail("Not yet implemented");
