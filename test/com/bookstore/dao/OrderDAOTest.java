@@ -58,7 +58,7 @@ class OrderDAOTest {
 	public void testCreateBookOrder2() {
 		BookOrder order = new BookOrder();
 		Customer customer = new Customer();
-		customer.setCustomerId(8);
+		customer.setCustomerId(7);
 		
 		order.setCustomer(customer);
 		order.setRecipientName("Nam Ha Minh");
@@ -76,7 +76,7 @@ class OrderDAOTest {
 		
 		orderDetails.add(orderDetail1);
 
-		Book book2 = new Book(5);
+		Book book2 = new Book(7);
 		OrderDetail orderDetail2 = new OrderDetail();
 		orderDetail2.setBook(book2);
 		orderDetail2.setQuantity(1);
@@ -94,7 +94,17 @@ class OrderDAOTest {
 	}	
 	@Test
 	void testGet() {
-		fail("Not yet implemented");
+		Integer  orderId = 6;
+		BookOrder order = orderDAO.get(orderId);
+		
+		System.out.println(order.getRecipientName());
+		System.out.println(order.getRecipientPhone());
+		System.out.println(order.getShippingAddress());
+		System.out.println(order.getStatus());
+		System.out.println(order.getTotal());
+		System.out.println(order.getPaymentMethod());
+		
+		assertEquals(2, order.getOrderDetails().size());
 	}
 
 	@Test
