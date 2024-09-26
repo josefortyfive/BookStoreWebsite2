@@ -26,6 +26,7 @@ import jakarta.persistence.Column;
 })
 public class OrderDetail implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private OrderDetailId id = new OrderDetailId();
 	private Book book;
 	private BookOrder bookOrder;
