@@ -6,10 +6,9 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
-	<title>Manage Reviews - M.A.'s Bookstore Administration</title>
+	<title>Order Details - M.A.'s Bookstore Administration</title>
 	<link rel="stylesheet" href="../css/style.css">
 	<script type="text/javascript" src="../js/jquery-3.7.1.min.js"></script>
-	<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 
@@ -50,7 +49,7 @@
 					<td>${order.status}</td>
 					<td>${order.orderDate }</td>
 					<td>
-						<a href="edit_review?id=${review.reviewId}">Detail</a> &nbsp;
+						<a href="view_order?id=${order.orderId}">Detail</a> &nbsp;
 						<a href="edit_review?id=${review.reviewId}">Edit</a> &nbsp;
 						<a href="javascript:void(0);" class="deleteLink" id="${review.reviewId}">Delete</a>
 					</td>
