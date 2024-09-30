@@ -58,4 +58,13 @@ public class OrderServices {
 		
 	}
 
+
+
+	public void showCheckoutForm()  throws ServletException, IOException {
+		String checkoutPage = "checkout.jsp";
+		RequestDispatcher dispatcher = request.getRequestDispatcher(checkoutPage);
+		dispatcher.forward(request, response);
+		
+	}
+
 }
