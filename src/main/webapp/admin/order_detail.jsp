@@ -101,7 +101,7 @@
 	</div>
 	<div align="center">
 		<a href="">Edit this Order</a>
-		&nbsp; &nbsp; &nbsp; &nbsp; 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 		<a href="">Delete this order</a>
 	</div>
 	
