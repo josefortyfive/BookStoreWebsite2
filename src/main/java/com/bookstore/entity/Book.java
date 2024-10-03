@@ -3,7 +3,6 @@ package com.bookstore.entity;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.Comparator;
