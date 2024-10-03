@@ -49,9 +49,9 @@ public class ShoppingCart {
 		}
 	}
 	
-	public double getTotalAmount() {
+	public float getTotalAmount() {
 	
-		double total = 0.0f;
+		float total = 0.0f;
 		
 		Iterator<Book> iterator = cart.keySet().iterator();
 		
